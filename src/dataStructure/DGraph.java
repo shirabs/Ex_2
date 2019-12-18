@@ -24,13 +24,13 @@ public class DGraph implements graph{
 	@Override
 	public void addNode(node_data n) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void connect(int src, int dest, double w) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
