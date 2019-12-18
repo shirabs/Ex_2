@@ -2,7 +2,8 @@ package dataStructure;
 
 public class EdgeData implements edge_data{
 
-	private NodeData kodkod;
+	private NodeData kstart;
+	private NodeData kend;
 	private int weight;
 	
 	
