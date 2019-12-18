@@ -8,7 +8,7 @@ public class DGraph implements graph{
 
 	HashMap<Integer, ArrayList<NodeData>> g;
 	
-	
+
 	@Override
 	public node_data getNode(int key) {
 		

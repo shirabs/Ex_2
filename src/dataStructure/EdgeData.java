@@ -1,52 +1,76 @@
 package dataStructure;
 
+import java.awt.Color;
+
 public class EdgeData implements edge_data{
 
-	private NodeData kstart;
-	private NodeData kend;
+	private NodeData src;
+	private NodeData dest;
+	private String info;
 	private int weight;
+	private Color tag;
 	
-	
+	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
+
+	public EdgeData(NodeData start,NodeData end,int w) {
+
+		src=start;
+		dest=end;
+		weight=w;
+		info="";
+	}
+
+	public EdgeData(NodeData start,NodeData end,int w,String s) {
+
+		src=start;
+		dest=end;
+		weight=w;
+		info=s;
+	}
+
+
 	@Override
 	public int getSrc() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return src.getKey();
 	}
 
 	@Override
 	public int getDest() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return dest.getKey();
 	}
 
 	@Override
 	public double getWeight() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return weight;
 	}
 
 	@Override
 	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.info;
 	}
 
 	@Override
 	public void setInfo(String s) {
-		// TODO Auto-generated method stub
-		
+		this.info=s;
 	}
 
 	@Override
 	public int getTag() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.tag==color[0])
+			return 0;
+		if(this.tag==color[1])
+			return 1;
+		return 2;
 	}
 
 	@Override
 	public void setTag(int t) {
-		// TODO Auto-generated method stub
-		
+		if(t>=0&&t<3)
+		tag=color[t];
+
 	}
 
 }
