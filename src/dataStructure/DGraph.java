@@ -1,13 +1,17 @@
 package dataStructure;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 public class DGraph implements graph{
 
+	HashMap<Integer, ArrayList<NodeData>> g;
+	
 
 	@Override
 	public node_data getNode(int key) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
