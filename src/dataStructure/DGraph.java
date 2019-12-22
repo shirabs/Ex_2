@@ -62,9 +62,7 @@ public class DGraph implements graph{
 				this.EdgeMap.get(src).put(dest, x);
 				countEdge++;
 			}
-
 			mc++;
-
 		}
 	}
 
@@ -87,8 +85,10 @@ public class DGraph implements graph{
 		Collection<edge_data> rem=this.EdgeMap.remove(key).values();
 		countEdge-=rem.size();
 		for(int i=0;i<EdgeMap.size();i++) {
-			removeEdge(i, key);
-			countEdge--;
+			if(EdgeMap.get(i).containsKey(key)) {
+				removeEdge(i, key);
+				countEdge--;
+			}
 		}
 		mc++;
 		return t;
@@ -96,6 +96,9 @@ public class DGraph implements graph{
 
 	@Override
 	public edge_data removeEdge(int src, int dest) {
+		if(this.EdgeMap.get(src).get(dest)==null) {
+			return null;
+		}
 		mc++;
 		countEdge--;
 		return this.EdgeMap.get(src).remove(dest);
@@ -104,9 +107,9 @@ public class DGraph implements graph{
 	@Override
 	public int nodeSize() {
 		// TODO Auto-generated method stub
-		
+
 		return DataMap.size() ;
-		
+
 	}
 
 	@Override
