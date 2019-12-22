@@ -73,6 +73,6 @@ public class EdgeData implements edge_data{
 
 	}
 	public String toString() {
-		return "src ="+this.src+ "dest ="+this.dest;
+		return "  src="+this.src+ "----->  dest ="+this.dest+"   weight="+this.weight;
 	}
 }

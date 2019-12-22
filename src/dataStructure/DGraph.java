@@ -6,12 +6,12 @@ import java.util.HashMap;
 
 public class DGraph implements graph{
 
-	private HashMap<Integer,NodeData> DataMap;
+	private HashMap<Integer,node_data> DataMap;
 	private HashMap<Integer, HashMap<Integer, EdgeData>> EdgeMap;
 	private int countEdge=0;
-
+	private int mc;
 	public DGraph() {
-		this.DataMap=new HashMap<Integer, NodeData>();
+		this.DataMap=new HashMap<Integer, node_data>();
 		this.EdgeMap=new HashMap<Integer, HashMap<Integer, EdgeData>>();
 		this.countEdge=0;
 	}
@@ -27,12 +27,11 @@ public class DGraph implements graph{
 
 	@Override
 	public edge_data getEdge(int src, int dest) {
-		if(EdgeMap.get(src)!=null) {
-			if(EdgeMap.containsValue(dest)) {
-				return this.getEdge(src, dest);
-			}
+		if(this.EdgeMap.get(src).get(dest)!=null) {
+			return this.EdgeMap.get(src).get(dest);
 		}
 		return null;
+
 
 	}
 
@@ -46,7 +45,6 @@ public class DGraph implements graph{
 
 	@Override
 	public void connect(int src, int dest, double w) {
-
 		if(this.DataMap.get(src)==null||this.DataMap.get(dest)==null) {
 			System.out.println("connect faild");
 		}
@@ -54,17 +52,13 @@ public class DGraph implements graph{
 			EdgeData x=new EdgeData(src, dest, w);
 			if(this.EdgeMap.get(src)==null) {
 				this.EdgeMap.put(src,new HashMap<Integer,EdgeData>());
-				this.EdgeMap.get(src).put(src, x);
-countEdge++;
-			}
-			else {
-				this.EdgeMap.get(src).put(src, x);
+				this.EdgeMap.get(src).put(dest, x);
 				countEdge++;
 			}
-
-
-
-
+			else {
+				this.EdgeMap.get(src).put(dest, x);
+				countEdge++;
+			}
 		}
 	}
 
@@ -95,7 +89,7 @@ countEdge++;
 	@Override
 	public int nodeSize() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.DataMap.size();
 	}
 
 	@Override
@@ -110,7 +104,8 @@ countEdge++;
 		return 0;
 	}
 	public String toString() {
-		return  "the countedge ="+countEdge;
+		return  "the countedge= "+countEdge+"\n"+"   "+this.EdgeMap;
+
 	}
 
 }
