@@ -34,6 +34,8 @@ public class TestForMe {
 		y.connect(1, 3, 3);
 		y.connect(2,4, 10);
 		y.connect(2, 1, 4);
+		y.removeNode(2
+				);
 		System.out.println(y);
 		System.out.println(y.getEdge(1,3));
 

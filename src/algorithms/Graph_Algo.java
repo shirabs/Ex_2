@@ -12,8 +12,7 @@ import dataStructure.node_data;
  */
 public class Graph_Algo implements graph_algorithms{
 
-	
-	
+
 	
 	@Override
 	public void init(graph g) {

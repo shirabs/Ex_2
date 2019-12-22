@@ -31,9 +31,10 @@ public class DGraph implements graph{
 
 	@Override
 	public edge_data getEdge(int src, int dest) {
-		if(this.EdgeMap.get(src).get(dest)!=null) {
-			return this.EdgeMap.get(src).get(dest);
-		}
+		if(this.EdgeMap.containsKey(src))
+			if(this.EdgeMap.get(src).get(dest)!=null) {
+				return this.EdgeMap.get(src).get(dest);
+			}
 		return null;
 	}
 
@@ -83,15 +84,26 @@ public class DGraph implements graph{
 
 	@Override
 	public node_data removeNode(int key) {
-		node_data t= this.DataMap.remove(key);
-		Collection<edge_data> rem=this.EdgeMap.remove(key).values();
-		countEdge-=rem.size();
-		for(int i=0;i<EdgeMap.size();i++) {
-			removeEdge(i, key);
-			countEdge--;
+		if(DataMap.containsKey(key)) {
+			//delete from DataMap
+			node_data t= this.DataMap.remove(key);
+			//delete the edge that out from the node key
+			if( EdgeMap.containsKey(key)) {
+				Collection<edge_data> rem=this.EdgeMap.remove(key).values();
+				countEdge-=rem.size();
+			}
+			//delete the edge that enter to the node key
+			for(int i=0;i<=NodeData.id;i++) {
+				if(EdgeMap.containsKey(i)&&EdgeMap.get(i).containsKey(key)) {
+					removeEdge(i, key);
+					mc--;
+				}
+			}
+			mc++;
+			return t;
 		}
-		mc++;
-		return t;
+		return null;
+
 	}
 
 	@Override
@@ -101,12 +113,10 @@ public class DGraph implements graph{
 		return this.EdgeMap.get(src).remove(dest);
 	}
 
+
 	@Override
 	public int nodeSize() {
-		// TODO Auto-generated method stub
-		
 		return DataMap.size() ;
-		
 	}
 
 	@Override
