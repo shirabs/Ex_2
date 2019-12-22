@@ -4,15 +4,15 @@ import java.awt.Color;
 
 public class EdgeData implements edge_data{
 
-	private NodeData src;
-	private NodeData dest;
+	private int src;
+	private int dest;
 	private String info;
-	private int weight;
+	private double weight;
 	private Color tag;
 	
 	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
 
-	public EdgeData(NodeData start,NodeData end,int w) {
+	public EdgeData(int start,int end,double w) {
 
 		src=start;
 		dest=end;
@@ -20,7 +20,7 @@ public class EdgeData implements edge_data{
 		info="";
 	}
 
-	public EdgeData(NodeData start,NodeData end,int w,String s) {
+	public EdgeData(int start,int end,double w,String s) {
 
 		src=start;
 		dest=end;
@@ -32,13 +32,13 @@ public class EdgeData implements edge_data{
 	@Override
 	public int getSrc() {
 
-		return src.getKey();
+		return this.src;
 	}
 
 	@Override
 	public int getDest() {
 
-		return dest.getKey();
+		return this.dest;
 	}
 
 	@Override
@@ -72,5 +72,7 @@ public class EdgeData implements edge_data{
 		tag=color[t];
 
 	}
-
+	public String toString() {
+		return "src ="+this.src+ "dest ="+this.dest;
+	}
 }
