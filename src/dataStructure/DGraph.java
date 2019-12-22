@@ -11,7 +11,7 @@ public class DGraph implements graph{
 	private HashMap<Integer,node_data> DataMap;
 	private HashMap<Integer, HashMap<Integer, edge_data>> EdgeMap;
 	private int countEdge=0;
-	private int mc=0;
+	private int mc;
 
 	public DGraph() {
 		this.DataMap=new HashMap<Integer, node_data>();
@@ -31,10 +31,8 @@ public class DGraph implements graph{
 
 	@Override
 	public edge_data getEdge(int src, int dest) {
-		if(EdgeMap.get(src)!=null) {
-			if(EdgeMap.containsValue(dest)) {
-				return this.getEdge(src, dest);
-			}
+		if(this.EdgeMap.get(src).get(dest)!=null) {
+			return this.EdgeMap.get(src).get(dest);
 		}
 		return null;
 	}
@@ -50,7 +48,6 @@ public class DGraph implements graph{
 
 	@Override
 	public void connect(int src, int dest, double w) {
-
 		if(this.DataMap.get(src)==null||this.DataMap.get(dest)==null) {
 			System.out.println("connect faild");
 		}
@@ -58,14 +55,16 @@ public class DGraph implements graph{
 			EdgeData x=new EdgeData(src, dest, w);
 			if(this.EdgeMap.get(src)==null) {
 				this.EdgeMap.put(src,new HashMap<Integer,edge_data>());
-				this.EdgeMap.get(src).put(src, x);
+				this.EdgeMap.get(src).put(dest, x);
 				countEdge++;
 			}
 			else {
-				this.EdgeMap.get(src).put(src, x);
+				this.EdgeMap.get(src).put(dest, x);
 				countEdge++;
 			}
+
 			mc++;
+
 		}
 	}
 
@@ -105,7 +104,9 @@ public class DGraph implements graph{
 	@Override
 	public int nodeSize() {
 		// TODO Auto-generated method stub
+		
 		return DataMap.size() ;
+		
 	}
 
 	@Override
@@ -120,7 +121,8 @@ public class DGraph implements graph{
 		return mc;
 	}
 	public String toString() {
-		return  "the countedge ="+countEdge;
+		return  "the countedge= "+countEdge+"\n"+"   "+this.EdgeMap;
+
 	}
 
 }
