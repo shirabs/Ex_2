@@ -14,18 +14,22 @@ public class EdgeData implements edge_data{
 
 	public EdgeData(int start,int end,double w) {
 
-		src=start;
-		dest=end;
-		weight=w;
-		info="";
+		this.src=start;
+		this.dest=end;
+		this.weight=w;
+		this.info="";
+		this.tag=color[0];
+
 	}
 
 	public EdgeData(int start,int end,double w,String s) {
 
-		src=start;
-		dest=end;
-		weight=w;
-		info=s;
+		this.src=start;
+		this.dest=end;
+		this.weight=w;
+		this.info=s;
+		this.tag=color[0];
+
 	}
 
 
@@ -44,7 +48,7 @@ public class EdgeData implements edge_data{
 	@Override
 	public double getWeight() {
 
-		return weight;
+		return this.weight;
 	}
 
 	@Override

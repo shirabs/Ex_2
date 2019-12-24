@@ -7,7 +7,7 @@ import utils.Point3D;
 public class NodeData implements node_data {
 	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
 	private Point3D location;
-	public int key;
+	private int key;
 	private double weight;
 	private Color tag;
 	private NodeData prev;
@@ -21,7 +21,6 @@ public class NodeData implements node_data {
 		this.weight= Double.POSITIVE_INFINITY;
 		this.tag=color[0];
 		this.prev=null;
-
 	}
 
 	@Override
