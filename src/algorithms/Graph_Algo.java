@@ -1,23 +1,15 @@
 package algorithms;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Iterator;
-import dataStructure.NodeData;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+
+
 
 import dataStructure.DGraph;
-import dataStructure.EdgeData;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
@@ -31,87 +23,31 @@ import dataStructure.node_data;
  */
 public class Graph_Algo implements graph_algorithms{
 
-	private graph g;
+	graph g;
 
 	public Graph_Algo() {
 		g=new DGraph();
 	}
 
+
 	@Override
 	public void init(graph g) {
 		this.g=g;
-	}
-
-	@Override
-	public void save(String file_name) {
-		// TODO Auto-generated method stub
-		Gson gson =new Gson();
-		String json= gson.toJson(g);
-		try 
-		{
-			PrintWriter pw = new PrintWriter(new File(file_name));
-			pw.write(json);
-			pw.close();
-		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-			return;
-		}
 
 	}
 
 	@Override
 	public void init(String file_name) {
-		// TODO Auto-generated method stub
-		Gson gson = new Gson();
-		try 
-		{
-			FileReader reader = new FileReader(file_name);
-
-
-			final TypeToken<ArrayList<graph>> requestListTypeToken = new TypeToken<ArrayList<graph>>() {};
-
-			//			
-			final RuntimeTypeAdapterFactory<graph> typeFactory = RuntimeTypeAdapterFactory
-					.of(graph.class, "type") 
-					.registerSubtype(DGraph.class) ;
-
-			final Gson gson2 = new GsonBuilder().registerTypeAdapterFactory(typeFactory).create();
-
-			final ArrayList<graph> result = gson2.fromJson(reader, requestListTypeToken.getType() );
-			this.g=(graph) result;
-			//			System.out.println(g);
-
-		} 
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 
 
+	@Override
+	public void save(String file_name) {
+	}
 
 	@Override
 	public boolean isConnected() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -123,7 +59,24 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
-		// TODO Auto-generated method stub
+		List<node_data> sp = new LinkedList();
+		sp.add(g.getNode(src));
+		g.getNode(src).setWeight(0);
+		while(!visitall()) {
+			int s=smallest_node();
+			node_data t = g.getNode(s);
+			t.setTag(1);
+			Collection<edge_data> ed= g.getE(s);
+			Iterator<edge_data> it = ed.iterator();
+			while(it.hasNext()) {
+				edge_data eg = it.next();
+				if(t.getWeight()+eg.getWeight()<g.getNode(eg.getDest()).getWeight()) {
+					g.getNode(eg.getDest()).setWeight(t.getWeight()+eg.getWeight());
+					g.getNode(eg.getDest()).setInfo(eg.getSrc()+"");
+
+				}
+			}
+		}
 		return null;
 	}
 
@@ -156,5 +109,38 @@ public class Graph_Algo implements graph_algorithms{
 		}
 		return c;
 	}
+
+	private void upnode_inf() { 
+		Collection<node_data> col = g.getV();
+		Iterator<node_data> it = col.iterator();
+		while(it.hasNext()) {
+			it.next().setWeight(Double.POSITIVE_INFINITY);
+		}
+
+	}
+	private int smallest_node() { 
+
+		Collection<node_data> col = g.getV();
+		Iterator<node_data> it = col.iterator();
+		int ans = it.next().getKey();
+		while(it.hasNext()) {
+			if(g.getNode(ans).getWeight()>it.next().getWeight()) {
+				ans=it.next().getKey();
+			}
+		}
+		return ans;
+	}
+	private boolean visitall() { 
+		Collection<node_data> col = g.getV();
+		Iterator<node_data> it = col.iterator();
+		while(it.hasNext()) {
+			if(it.next().getTag()==0) {
+				return false;
+			}
+		}
+		return true;
+
+	}
+
 
 }

@@ -3,7 +3,6 @@ package dataStructure;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class DGraph implements graph{
@@ -19,6 +18,7 @@ public class DGraph implements graph{
 		this.countEdge=0;
 		this.mc=0;
 	}
+	
 
 	@Override
 	public node_data getNode(int key) {
@@ -44,14 +44,11 @@ public class DGraph implements graph{
 		int key=n.getKey();
 		DataMap.put(key, (NodeData) n);
 		mc++;
-		
-		
 	}
 
 
 	@Override
 	public void connect(int src, int dest, double w) {
-	
 		if(this.DataMap.get(src)==null||this.DataMap.get(dest)==null) {
 			System.out.println("connect faild");
 		}
@@ -61,12 +58,16 @@ public class DGraph implements graph{
 				this.EdgeMap.put(src,new HashMap<Integer,edge_data>());
 				this.EdgeMap.get(src).put(dest, x);
 				countEdge++;
+				mc++;
 			}
 			else {
-				this.EdgeMap.get(src).put(dest, x);
-				countEdge++;
+
+				if(!(EdgeMap.get(src).containsKey(dest))) {
+					this.EdgeMap.get(src).put(dest, x);
+					countEdge++;
+					mc++;
+				}
 			}
-			mc++;
 		}
 	}
 
@@ -127,17 +128,16 @@ public class DGraph implements graph{
 
 	@Override
 	public int edgeSize() {
-		// TODO Auto-generated method stub
 		return this.countEdge;
 	}
 
 	@Override
 	public int getMC() {
-		// TODO Auto-generated method stub
 		return mc;
 	}
 	public String toString() {
 		return  "the countedge= "+countEdge+"\n"+"   "+this.EdgeMap;
+
 	}
 
 }

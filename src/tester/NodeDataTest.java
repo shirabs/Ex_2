@@ -22,13 +22,13 @@ class NodeDataTest {
 
 	@Test
 	void testGetKey() {
-//
-//		NodeData x1=new NodeData(null);
-//		NodeData x2=new NodeData(null);
+
+		NodeData x1=new NodeData(null);
+		NodeData x2=new NodeData(null);
 //		System.out.println(x1.getKey()+"b");
 //		System.out.println(x2.getKey()+"c");
-//		assertEquals(5, x1.getKey());
-//		assertEquals(6, x2.getKey());
+		assertEquals(5, x1.getKey());
+		assertEquals(6, x2.getKey());
 	}
 
 	@Test

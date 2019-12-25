@@ -50,15 +50,14 @@ public class TestForMe {
 
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
-		graph z=  a.copy();
-		System.out.println(z);
-
-		z.removeNode(1);
-		System.out.println(y);
-		System.out.println(z);
-		//System.out.println(z);
+//		graph z=  a.copy();
+//		System.out.println(z);
+//		z.removeNode(1);
+//		System.out.println(y);
+//		System.out.println(z);
+//		//System.out.println(z);
 		
-//		a.save("graph y");
+		a.save("graph y");
 		
 
 
