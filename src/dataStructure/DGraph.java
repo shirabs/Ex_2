@@ -135,7 +135,5 @@ public class DGraph implements graph{
 	}
 	public String toString() {
 		return  "the countedge= "+countEdge+"\n"+"   "+this.EdgeMap;
-
 	}
-
 }
