@@ -21,7 +21,15 @@ public class EdgeData implements edge_data{
 		this.tag=color[0];
 
 	}
+	public EdgeData(EdgeData e) {
 
+		this.src=e.src;
+		this.dest=e.dest;
+		this.weight=e.weight;
+		this.info="";
+		this.tag=color[0];
+
+	}
 	public EdgeData(int start,int end,double w,String s) {
 
 		this.src=start;

@@ -1,20 +1,23 @@
 package algorithms;
 
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Iterator;
+import dataStructure.NodeData;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
-import java.util.Iterator;
 import dataStructure.DGraph;
+import dataStructure.EdgeData;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
@@ -28,15 +31,20 @@ import dataStructure.node_data;
  */
 public class Graph_Algo implements graph_algorithms{
 
-	graph g;
+	private graph g;
 
-	@Override
-	public void init(graph g) {
+	public Graph_Algo() {
 		g=new DGraph();
 	}
 
 	@Override
-	public void init(String file_name) {
+	public void init(graph g) {
+		this.g=g;
+	}
+
+	@Override
+	public void save(String file_name) {
+		// TODO Auto-generated method stub
 		Gson gson =new Gson();
 		String json= gson.toJson(g);
 		try 
@@ -54,7 +62,8 @@ public class Graph_Algo implements graph_algorithms{
 	}
 
 	@Override
-	public void save(String file_name) {
+	public void init(String file_name) {
+		// TODO Auto-generated method stub
 		Gson gson = new Gson();
 		try 
 		{
@@ -72,18 +81,37 @@ public class Graph_Algo implements graph_algorithms{
 
 			final ArrayList<graph> result = gson2.fromJson(reader, requestListTypeToken.getType() );
 			this.g=(graph) result;
-			System.out.println(g);
+			//			System.out.println(g);
 
 		} 
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
 	}
 
-	}
+
 
 	@Override
 	public boolean isConnected() {
-		// TODO Auto-generated method stub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		return false;
 	}
 
@@ -112,9 +140,19 @@ public class Graph_Algo implements graph_algorithms{
 		Iterator<node_data> it=node.iterator();
 		while(it.hasNext()){
 			c.addNode(it.next());
+		}
+
+		it=node.iterator();
+		while(it.hasNext()){
 			Collection<edge_data> edge=g.getE(it.next().getKey());
 			Iterator<edge_data> it2=edge.iterator();
-			c.connect(it2.next().getSrc(), it2.next().getDest(), it2.next().getWeight());
+
+			while(it2.hasNext()) {
+				edge_data t=it2.next();
+				c.connect(t.getSrc(), t.getDest(), t.getWeight());
+
+			}
+
 		}
 		return c;
 	}
