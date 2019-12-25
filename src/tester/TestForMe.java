@@ -1,7 +1,9 @@
-package dataStructure;
+package tester;
 
 
 
+import dataStructure.DGraph;
+import dataStructure.NodeData;
 import utils.Point3D;
 
 public class TestForMe {
@@ -17,7 +19,6 @@ public class TestForMe {
 		NodeData x4=new NodeData(new Point3D(55, 27, 32));
 		NodeData x5=new NodeData(new Point3D(66, 28, 335));
 		NodeData x6=new NodeData(new Point3D(77, 29, 31));
-		NodeData x7=new NodeData(new Point3D(5, 6, 99));
 
 
 		DGraph y=new DGraph();
@@ -28,19 +29,30 @@ public class TestForMe {
 		y.addNode(x4);
 		y.addNode(x5);
 		y.addNode(x6);
-		y.addNode(x7);
 
 		y.connect(1, 2, 2);
 		y.connect(1, 3, 3);
-		y.connect(2,4, 10);
+		y.connect(2, 3, 10);
 		y.connect(2, 1, 4);
+		y.connect(2, 5, 9);
+		y.connect(3, 4, 7);		
+		y.connect(3, 7, 3);
+		y.connect(3, 5, 3);
+		y.connect(4, 7, 12);
+		y.connect(4, 1, 6);
+		y.connect(5, 6, 5);
+		y.connect(6, 3, 2);
+		y.connect(6, 5, 4);
+		y.connect(7, 6, 8);
+
+
 
 		
 
 		System.out.println(y);
 		System.out.println(y.getEdge(1,3));
 System.out.println(x.getTag());
-
+System.out.println(y.nodeSize());
 
 
 

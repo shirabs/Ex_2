@@ -1,7 +1,10 @@
 package algorithms;
 
+import java.util.Collection;
 import java.util.List;
 
+import dataStructure.NodeData;
+import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
 /**
@@ -12,29 +15,47 @@ import dataStructure.node_data;
  */
 public class Graph_Algo implements graph_algorithms{
 
+	private graph gra;
 
-	
+
 	@Override
 	public void init(graph g) {
-		// TODO Auto-generated method stub
-		
+		this.gra=g;		
 	}
 
 	@Override
 	public void init(String file_name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void save(String file_name) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean isConnected() {
-		// TODO Auto-generated method stub
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		return false;
 	}
 
