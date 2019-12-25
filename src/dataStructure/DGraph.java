@@ -19,6 +19,7 @@ public class DGraph implements graph{
 		this.countEdge=0;
 		this.mc=0;
 	}
+	
 
 	@Override
 	public node_data getNode(int key) {
@@ -58,12 +59,16 @@ public class DGraph implements graph{
 				this.EdgeMap.put(src,new HashMap<Integer,edge_data>());
 				this.EdgeMap.get(src).put(dest, x);
 				countEdge++;
+				mc++;
 			}
 			else {
-				this.EdgeMap.get(src).put(dest, x);
-				countEdge++;
+
+				if(!(EdgeMap.get(src).containsKey(dest))) {
+					this.EdgeMap.get(src).put(dest, x);
+					countEdge++;
+					mc++;
+				}
 			}
-			mc++;
 		}
 	}
 
@@ -124,13 +129,11 @@ public class DGraph implements graph{
 
 	@Override
 	public int edgeSize() {
-		// TODO Auto-generated method stub
 		return this.countEdge;
 	}
 
 	@Override
 	public int getMC() {
-		// TODO Auto-generated method stub
 		return mc;
 	}
 	public String toString() {

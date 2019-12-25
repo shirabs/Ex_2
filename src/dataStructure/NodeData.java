@@ -10,7 +10,7 @@ public class NodeData implements node_data {
 	private int key;
 	private double weight;
 	private Color tag;
-	private NodeData prev;
+	private int prev;
 	private String info;
 	public static int id=1;
 
@@ -20,9 +20,9 @@ public class NodeData implements node_data {
 		this.id++;
 		this.weight= Double.POSITIVE_INFINITY;
 		this.tag=color[0];
-		this.prev=null;
+		this.prev=0;
 	}
-
+	
 	@Override
 	public int getKey() {
 		return this.key;
@@ -74,6 +74,10 @@ public class NodeData implements node_data {
 
 	}
 
+	public void setPrev(int t) {
+		this.prev=t;
+	}
+	
 	public String toString() {
 		return "key ="+ this.key+ "color ="+this.tag+ "location ="+this.location+ "wegith ="+this.weight+ "prev ="+this.prev;
 	}
