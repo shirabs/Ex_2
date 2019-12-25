@@ -2,8 +2,10 @@ package tester;
 
 
 
+import algorithms.Graph_Algo;
 import dataStructure.DGraph;
 import dataStructure.NodeData;
+import dataStructure.graph;
 import utils.Point3D;
 
 public class TestForMe {
@@ -19,6 +21,7 @@ public class TestForMe {
 		NodeData x4=new NodeData(new Point3D(55, 27, 32));
 		NodeData x5=new NodeData(new Point3D(66, 28, 335));
 		NodeData x6=new NodeData(new Point3D(77, 29, 31));
+
 
 
 		DGraph y=new DGraph();
@@ -45,14 +48,19 @@ public class TestForMe {
 		y.connect(6, 5, 4);
 		y.connect(7, 6, 8);
 
-
-
+		Graph_Algo a=new Graph_Algo();
+		a.init(y);
+//		graph z=  a.copy();
+//		System.out.println(z);
+//
+//		z.removeNode(1);
+//		System.out.println(y);
+//		System.out.println(z);
+//		//System.out.println(z);
+		
+		a.save("graph y");
 		
 
-		System.out.println(y);
-		System.out.println(y.getEdge(1,3));
-System.out.println(x.getTag());
-System.out.println(y.nodeSize());
 
 
 
@@ -62,13 +70,10 @@ System.out.println(y.nodeSize());
 
 
 
-
-
-
-
-
-
-
+		//		System.out.println(y);
+		//		System.out.println(y.getEdge(1,3));
+		//System.out.println(x.getTag());
+		//System.out.println(y.nodeSize());
 
 		//		EdgeData y=new EdgeData(x, x1, 2);
 		//		EdgeData y1=new EdgeData(x, x2, 3);
