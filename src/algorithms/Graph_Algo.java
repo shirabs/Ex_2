@@ -72,7 +72,7 @@ public class Graph_Algo implements graph_algorithms{
 
 			final ArrayList<graph> result = gson2.fromJson(reader, requestListTypeToken.getType() );
 			this.g=(graph) result;
-//			System.out.println(g);
+			System.out.println(g);
 
 		} 
 		catch (FileNotFoundException e) {
@@ -114,7 +114,7 @@ public class Graph_Algo implements graph_algorithms{
 			c.addNode(it.next());
 			Collection<edge_data> edge=g.getE(it.next().getKey());
 			Iterator<edge_data> it2=edge.iterator();
-			c.connect(it.next().getKey(), it2.next().getDest(), it2.next().getWeight());
+			c.connect(it2.next().getSrc(), it2.next().getDest(), it2.next().getWeight());
 		}
 		return c;
 	}

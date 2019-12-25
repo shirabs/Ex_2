@@ -61,10 +61,10 @@ public interface graph_algorithms {
 	 */
 	public List<node_data> shortestPath(int src, int dest);
 	/**
-	 * computes a relatively short path which visit each node in the targets List.
-	 * Note: this is NOT the classical traveling salesman problem, 
-	 * as you can visit a node more than once, and there is no need to return to source node - 
-	 * just a simple path going over all nodes in the list. 
+//	 * computes a relatively short path which visit each node in the targets List.
+//	 * Note: this is NOT the classical traveling salesman problem, 
+//	 * as you can visit a node more than once, and there is no need to return to source node - 
+//	 * just a simple path going over all nodes in the list. 
 	 * @param targets
 	 * @return
 	 */
