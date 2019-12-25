@@ -87,9 +87,24 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public graph copy() {
+		graph c= new DGraph();
+		Collection<node_data> node=	g.getV();
+		Iterator<node_data> it=node.iterator();
+		while(it.hasNext()){
+			c.addNode(it.next());
+		}
 
-
-		return null;
+		it=node.iterator();
+		while(it.hasNext()){
+			Collection<edge_data> edge=g.getE(it.next().getKey());
+			Iterator<edge_data> it2=edge.iterator();
+			while(it2.hasNext()) {
+				edge_data t=it2.next();
+				c.connect(t.getSrc(), t.getDest(), t.getWeight());
+				
+			}
+		}
+		return c;
 	}
 	
 	
