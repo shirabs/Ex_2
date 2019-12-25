@@ -22,7 +22,16 @@ public class NodeData implements node_data {
 		this.tag=color[0];
 		this.prev=0;
 	}
-	
+
+	public NodeData(NodeData n) {
+		this.location=n.location;
+		this.key=id;
+		this.id++;
+		this.weight= Double.POSITIVE_INFINITY;
+		this.tag=color[0];
+		this.prev=0;
+	}
+
 	@Override
 	public int getKey() {
 		return this.key;

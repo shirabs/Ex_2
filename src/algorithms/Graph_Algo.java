@@ -71,7 +71,8 @@ public class Graph_Algo implements graph_algorithms{
 				edge_data eg = it.next();
 				if(t.getWeight()+eg.getWeight()<g.getNode(eg.getDest()).getWeight()) {
 					g.getNode(eg.getDest()).setWeight(t.getWeight()+eg.getWeight());
-					g.getNode(eg.getDest()).setPrev(eg.getSrc());
+					g.getNode(eg.getDest()).setInfo(eg.getSrc()+"");
+					
 				}
 			}
 		}
@@ -90,6 +91,10 @@ public class Graph_Algo implements graph_algorithms{
 
 		return null;
 	}
+	
+	
+	
+	
 	private void upnode_inf() { 
 		Collection<node_data> col = g.getV();
 		Iterator<node_data> it = col.iterator();
