@@ -2,10 +2,15 @@ package tester;
 
 
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import algorithms.Graph_Algo;
 import dataStructure.DGraph;
 import dataStructure.NodeData;
+import dataStructure.edge_data;
 import dataStructure.graph;
+import dataStructure.node_data;
 import utils.Point3D;
 
 public class TestForMe {
@@ -21,6 +26,7 @@ public class TestForMe {
 		NodeData x4=new NodeData(new Point3D(55, 27, 32));
 		NodeData x5=new NodeData(new Point3D(66, 28, 335));
 		NodeData x6=new NodeData(new Point3D(77, 29, 31));
+		NodeData x7=new NodeData(new Point3D(72, 59, 81));
 
 
 
@@ -32,12 +38,13 @@ public class TestForMe {
 		y.addNode(x4);
 		y.addNode(x5);
 		y.addNode(x6);
+		y.addNode(x7);
 
 		y.connect(1, 2, 2);
 		y.connect(1, 3, 3);
 		y.connect(2, 3, 10);
-		y.connect(2, 1, 4);
 		y.connect(2, 5, 9);
+		y.connect(3, 2, 4);
 		y.connect(3, 4, 7);		
 		y.connect(3, 7, 3);
 		y.connect(3, 5, 3);
@@ -48,17 +55,12 @@ public class TestForMe {
 		y.connect(6, 5, 4);
 		y.connect(7, 6, 8);
 
+
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
-//		graph z=  a.copy();
-//		System.out.println(z);
-//		z.removeNode(1);
-//		System.out.println(y);
-//		System.out.println(z);
-//		//System.out.println(z);
 		
-		a.save("graph y");
-		
+		System.out.println(a);
+		System.out.println(a.isConnected());
 
 
 
@@ -67,6 +69,17 @@ public class TestForMe {
 
 
 
+
+
+
+		//		graph z=  a.copy();
+		//		System.out.println(z);
+		//		z.removeNode(1);
+		//		System.out.println(y);
+		//		System.out.println(z);
+		//		//System.out.println(z);
+
+		//a.save("graph y");
 
 
 		//		System.out.println(y);
@@ -88,10 +101,31 @@ public class TestForMe {
 		//		EdgeData y11=new EdgeData(x5, x7, 3);
 
 
+		/**
 
+		public graph copy() {
+			graph c= new DGraph();
+			Collection<node_data> node=	g.getV();
+			Iterator<node_data> it=node.iterator();
+			while(it.hasNext()){
+				c.addNode(it.next());
+			}
 
+			it=node.iterator();
+			while(it.hasNext()){
+				Collection<edge_data> edge=g.getE(it.next().getKey());
+				Iterator<edge_data> it2=edge.iterator();
 
+				while(it2.hasNext()) {
+					edge_data t=it2.next();
+					c.connect(t.getSrc(), t.getDest(), t.getWeight());
 
+				}
+
+			}
+			return c;
+		}
+		 */
 	}
 
 }

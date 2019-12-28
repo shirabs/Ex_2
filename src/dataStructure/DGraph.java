@@ -1,6 +1,7 @@
 package dataStructure;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -136,6 +137,7 @@ public class DGraph implements graph{
 		return mc;
 	}
 	public String toString() {
+		
 		return  "the countedge= "+countEdge+"\n"+"   "+this.EdgeMap;
 
 	}
