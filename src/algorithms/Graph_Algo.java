@@ -57,7 +57,6 @@ public class Graph_Algo implements graph_algorithms{
 		Collection<node_data> node=	temp.getV();
 		Iterator<node_data> it=node.iterator();
 		int run=it.next().getKey();
-
 		while(flag){
 			Collection<edge_data> edge=temp.getE(run);
 			Iterator<edge_data> it2=edge.iterator();
@@ -69,7 +68,7 @@ public class Graph_Algo implements graph_algorithms{
 				}
 			}
 			temp.removeNode(run);
-			
+
 			if(!point.isEmpty()) {
 				run=point.pop();
 			}
@@ -77,9 +76,7 @@ public class Graph_Algo implements graph_algorithms{
 				flag=false;			
 			}
 		}
-		System.out.println(counterPoint);
-		System.out.println(counterPoint2);
-		if(counterPoint==counterPoint2) {
+		if((counterPoint-counterPoint2)==0) {
 			return true;
 		}
 		return false;
@@ -129,11 +126,14 @@ public class Graph_Algo implements graph_algorithms{
 		Iterator<node_data> it=node.iterator();
 		while(it.hasNext()){
 			c.addNode(it.next());
-		}
 
+		}
 		it=node.iterator();
 		while(it.hasNext()){
 			Collection<edge_data> edge=g.getE(it.next().getKey());
+			if(edge==null) {
+				break;
+			}
 			Iterator<edge_data> it2=edge.iterator();
 
 			while(it2.hasNext()) {

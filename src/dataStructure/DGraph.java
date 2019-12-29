@@ -80,6 +80,9 @@ public class DGraph implements graph{
 
 	@Override
 	public Collection<edge_data> getE(int node_id) {
+		if(EdgeMap.get(node_id)==null) {
+			return null;
+		}
 		HashMap<Integer, edge_data> t= this.EdgeMap.remove(node_id);
 		this.EdgeMap.put(node_id, t);
 		return t.values();
@@ -138,7 +141,7 @@ public class DGraph implements graph{
 	}
 	public String toString() {
 		
-		return  "the countedge= "+countEdge+"\n"+"   "+this.EdgeMap;
+		return  "the countedge= "+countEdge+"\n"+"   "+this.EdgeMap+"\n"+ "size Nodedata= "+this.getV().size();
 
 	}
 

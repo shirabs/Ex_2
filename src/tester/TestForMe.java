@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import algorithms.Graph_Algo;
+import algorithms.graph_algorithms;
 import dataStructure.DGraph;
 import dataStructure.NodeData;
 import dataStructure.edge_data;
@@ -38,7 +39,7 @@ public class TestForMe {
 		y.addNode(x4);
 		y.addNode(x5);
 		y.addNode(x6);
-		y.addNode(x7);
+		//y.addNode(x7);
 
 		y.connect(1, 2, 2);
 		y.connect(1, 3, 3);
@@ -58,8 +59,10 @@ public class TestForMe {
 
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
-		
-		System.out.println(a);
+		graph b=a.copy();
+
+	//System.out.println(a);
+//	System.out.println(b);
 		System.out.println(a.isConnected());
 
 
@@ -87,18 +90,6 @@ public class TestForMe {
 		//System.out.println(x.getTag());
 		//System.out.println(y.nodeSize());
 
-		//		EdgeData y=new EdgeData(x, x1, 2);
-		//		EdgeData y1=new EdgeData(x, x2, 3);
-		//		EdgeData y2=new EdgeData(x, x3, 4);
-		//		EdgeData y3=new EdgeData(x1, x2, 3);
-		//		EdgeData y4=new EdgeData(x3, x2, 2);
-		//		EdgeData y5=new EdgeData(x1, x4, 5);
-		//		EdgeData y6=new EdgeData(x2, x5, 6);
-		//		EdgeData y7=new EdgeData(x3, x6, 9);
-		//		EdgeData y8=new EdgeData(x4, x5, 2);
-		//		EdgeData y9=new EdgeData(x6, x5, 7);
-		//		EdgeData y10=new EdgeData(x4, x7, 1);
-		//		EdgeData y11=new EdgeData(x5, x7, 3);
 
 
 		/**
