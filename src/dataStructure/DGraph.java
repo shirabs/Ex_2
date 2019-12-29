@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 public class DGraph implements graph{
 
+	private String type="DGraph";
 	private HashMap<Integer,node_data> DataMap;
 	private HashMap<Integer, HashMap<Integer, edge_data>> EdgeMap;
 	private int countEdge=0;
@@ -79,6 +80,8 @@ public class DGraph implements graph{
 
 	@Override
 	public Collection<edge_data> getE(int node_id) {
+		if(EdgeMap.get(node_id)==null)
+			return  null;
 		HashMap<Integer, edge_data> t= this.EdgeMap.remove(node_id);
 		this.EdgeMap.put(node_id, t);
 		return t.values();

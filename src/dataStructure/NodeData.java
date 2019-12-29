@@ -5,6 +5,7 @@ import java.awt.Color;
 import utils.Point3D;
 
 public class NodeData implements node_data {
+	private String type="NodeData";
 	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
 	private Point3D location;
 	private int key;
@@ -13,12 +14,21 @@ public class NodeData implements node_data {
 	private NodeData prev;
 	private String info;
 	public static int id=1;
+	
+	public NodeData() {
+		this.location=Point3D.ORIGIN;
+		this.key=id;
+		this.id++;
+		this.weight= Double.MAX_VALUE;
+		this.tag=color[0];
+		this.prev=null;
+	}
 
 	public NodeData(Point3D locat) {
 		this.location=locat;
 		this.key=id;
 		this.id++;
-		this.weight= Double.POSITIVE_INFINITY;
+		this.weight= Double.MAX_VALUE;
 		this.tag=color[0];
 		this.prev=null;
 	}

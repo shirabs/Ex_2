@@ -21,6 +21,7 @@ public class TestForMe {
 		NodeData x4=new NodeData(new Point3D(55, 27, 32));
 		NodeData x5=new NodeData(new Point3D(66, 28, 335));
 		NodeData x6=new NodeData(new Point3D(77, 29, 31));
+		NodeData x7=new NodeData(new Point3D(72, 59, 81));
 
 
 
@@ -32,6 +33,7 @@ public class TestForMe {
 		y.addNode(x4);
 		y.addNode(x5);
 		y.addNode(x6);
+		y.addNode(x7);
 
 		y.connect(1, 2, 2);
 		y.connect(1, 3, 3);
@@ -56,11 +58,11 @@ public class TestForMe {
 //		System.out.println(y);
 //		System.out.println(z);
 //		//System.out.println(z);
-		
+
 		a.save("graph y");
-		
-
-
+		Graph_Algo b=new Graph_Algo();
+		b.init("graph y");
+		System.out.println(b);
 
 
 

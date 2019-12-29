@@ -4,6 +4,7 @@ import java.awt.Color;
 
 public class EdgeData implements edge_data{
 
+	private String type="EdgeData";
 	private int src;
 	private int dest;
 	private String info;
@@ -11,6 +12,15 @@ public class EdgeData implements edge_data{
 	private Color tag;
 	
 	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
+	public EdgeData() {
+
+		this.src=0;
+		this.dest=0;
+		this.weight=0;
+		this.info="";
+		this.tag=color[0];
+
+	}
 
 	public EdgeData(int start,int end,double w) {
 

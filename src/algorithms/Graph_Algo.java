@@ -2,18 +2,19 @@ package algorithms;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
-
-
-import dataStructure.DGraph;
-import dataStructure.edge_data;
-import dataStructure.graph;
-import dataStructure.node_data;
-
+import dataStructure.*;
 
 /**
  * This empty class represents the set of graph-theory algorithms
@@ -22,27 +23,66 @@ import dataStructure.node_data;
  *
  */
 public class Graph_Algo implements graph_algorithms{
-
-	graph g;
+	private graph g;
 
 	public Graph_Algo() {
 		g=new DGraph();
 	}
 
-
 	@Override
 	public void init(graph g) {
 		this.g=g;
-
 	}
 
 	@Override
 	public void init(String file_name) {
-	}
+		try 
+		{
+			FileReader reader = new FileReader(file_name);
+			final TypeToken<graph> requestListTypeToken = new TypeToken<graph>() {};
+			final RuntimeTypeAdapterFactory<graph> graphTypeFactory = RuntimeTypeAdapterFactory
+					.of(graph.class, "type") 
+					.registerSubtype(DGraph.class);
 
+			final RuntimeTypeAdapterFactory<node_data> nodeTypeFactory = RuntimeTypeAdapterFactory
+					.of(node_data.class, "type")
+					.registerSubtype(NodeData.class);
+
+			final RuntimeTypeAdapterFactory<edge_data> edgeTypeFactory = RuntimeTypeAdapterFactory
+					.of(edge_data.class, "type")
+					.registerSubtype(EdgeData.class);
+
+			 
+			final GsonBuilder gson2 = new GsonBuilder();			
+			final graph result2 = gson2
+					.registerTypeAdapterFactory(graphTypeFactory)
+					.registerTypeAdapterFactory(nodeTypeFactory)
+					.registerTypeAdapterFactory(edgeTypeFactory)
+					.create()
+					.fromJson(reader,requestListTypeToken.getType());
+			this.g= result2;
+			System.out.println(result2);
+
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}	
+	}
 
 	@Override
 	public void save(String file_name) {
+		GsonBuilder gson= new GsonBuilder();
+		String wj= gson.create().toJson(g);
+		System.out.println(wj);
+		try {
+			PrintWriter pw= new PrintWriter(new File(file_name));
+			pw.write(wj);
+			pw.close();
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 
 	@Override
@@ -94,18 +134,16 @@ public class Graph_Algo implements graph_algorithms{
 		while(it.hasNext()){
 			c.addNode(it.next());
 		}
-
 		it=node.iterator();
 		while(it.hasNext()){
 			Collection<edge_data> edge=g.getE(it.next().getKey());
+			if(edge==null)
+				break;
 			Iterator<edge_data> it2=edge.iterator();
-
 			while(it2.hasNext()) {
 				edge_data t=it2.next();
 				c.connect(t.getSrc(), t.getDest(), t.getWeight());
-
 			}
-
 		}
 		return c;
 	}
@@ -114,7 +152,7 @@ public class Graph_Algo implements graph_algorithms{
 		Collection<node_data> col = g.getV();
 		Iterator<node_data> it = col.iterator();
 		while(it.hasNext()) {
-			it.next().setWeight(Double.POSITIVE_INFINITY);
+			it.next().setWeight(Double.MAX_VALUE);
 		}
 
 	}
@@ -140,6 +178,9 @@ public class Graph_Algo implements graph_algorithms{
 		}
 		return true;
 
+	}
+	public String toString() {
+		return g.toString();
 	}
 
 
