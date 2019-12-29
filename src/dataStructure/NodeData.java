@@ -6,12 +6,11 @@ import utils.Point3D;
 
 public class NodeData implements node_data {
 	private String type="NodeData";
-	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
+//	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
 	private Point3D location;
 	private int key;
 	private double weight;
-	private Color tag;
-	private NodeData prev;
+	private int tag;
 	private String info;
 	public static int id=1;
 	
@@ -20,8 +19,8 @@ public class NodeData implements node_data {
 		this.key=id;
 		this.id++;
 		this.weight= Double.MAX_VALUE;
-		this.tag=color[0];
-		this.prev=null;
+		this.tag=0;
+		this.info="";
 	}
 
 	public NodeData(Point3D locat) {
@@ -29,8 +28,9 @@ public class NodeData implements node_data {
 		this.key=id;
 		this.id++;
 		this.weight= Double.MAX_VALUE;
-		this.tag=color[0];
-		this.prev=null;
+		this.tag=0;
+		this.info="";
+		
 	}
 
 
@@ -71,21 +71,17 @@ public class NodeData implements node_data {
 
 	@Override
 	public int getTag() {
-		if(this.tag==color[0])
-			return 0;
-		if(this.tag==color[1])
-			return 1;
-		return 2;
+		return tag;
 	}
 
 	@Override
 	public void setTag(int t) {
-		if(t<3&&t>=0)
-			tag=color[t];
+		tag=t;
 
 	}
+	
 
 	public String toString() {
-		return "key ="+ this.key+ "color ="+this.tag+ "location ="+this.location+ "wegith ="+this.weight+ "prev ="+this.prev;
+		return "key ="+ this.key+ " tag ="+this.tag+ "location ="+this.location+ "wegith ="+this.weight;
 	}
 }

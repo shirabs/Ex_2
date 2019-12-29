@@ -64,7 +64,7 @@ public class Graph_Algo implements graph_algorithms{
 					.of(edge_data.class, "type")
 					.registerSubtype(EdgeData.class);
 
-			 
+
 			final GsonBuilder gson2 = new GsonBuilder();			
 			final graph result2 = gson2
 					.registerTypeAdapterFactory(graphTypeFactory)
@@ -139,31 +139,48 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public double shortestPathDist(int src, int dest) {
-		// TODO Auto-generated method stub
-		return 0;
+		List<node_data> sp=shortestPath(src, dest);
+		Iterator< node_data> it=sp.iterator();
+		double ans=0;
+		while(it.hasNext()) {
+			ans=it.next().getWeight();
+		}
+		return ans;
 	}
 
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
-		List<node_data> sp = new LinkedList();
-		sp.add(g.getNode(src));
+		upnode_max_and_notvisit_and_info();
 		g.getNode(src).setWeight(0);
 		while(!visitall()) {
 			int s=smallest_node();
-			node_data t = g.getNode(s);
-			t.setTag(1);
-			Collection<edge_data> ed= g.getE(s);
-			Iterator<edge_data> it = ed.iterator();
-			while(it.hasNext()) {
-				edge_data eg = it.next();
-				if(t.getWeight()+eg.getWeight()<g.getNode(eg.getDest()).getWeight()) {
-					g.getNode(eg.getDest()).setWeight(t.getWeight()+eg.getWeight());
-					g.getNode(eg.getDest()).setInfo(eg.getSrc()+"");
-
+			node_data ts = g.getNode(s);
+			ts.setTag(1);
+			Collection<edge_data> edges= g.getE(s);
+			if(edges!=null) {
+				Iterator<edge_data> it = edges.iterator();
+				while(it.hasNext()) {
+					edge_data tedge = it.next();
+					if(ts.getWeight()+tedge.getWeight()<=g.getNode(tedge.getDest()).getWeight()) {
+						g.getNode(tedge.getDest()).setWeight(ts.getWeight()+tedge.getWeight());
+						g.getNode(tedge.getDest()).setInfo(tedge.getSrc()+"");
+					}
 				}
 			}
 		}
-		return null;
+		List<node_data> sp = new LinkedList();
+		sp.add(g.getNode(dest));
+		node_data t = g.getNode(dest);
+		while(t.getKey()!=src) {
+			int b=Integer.parseInt(t.getInfo());
+			List<node_data> tsp = new LinkedList();
+			tsp.add(g.getNode(b));
+			tsp.addAll(sp);
+			sp=tsp;
+			t=g.getNode(b);
+		}
+	
+		return sp;
 	}
 
 	@Override
@@ -195,25 +212,38 @@ public class Graph_Algo implements graph_algorithms{
 		return c;
 	}
 
-	private void upnode_inf() { 
+	private void upnode_max_and_notvisit_and_info() { 
 		Collection<node_data> col = g.getV();
 		Iterator<node_data> it = col.iterator();
 		while(it.hasNext()) {
-			it.next().setWeight(Double.MAX_VALUE);
+			node_data t=it.next();
+			t.setTag(0);
+			t.setInfo("");
+			t.setWeight(Double.MAX_VALUE);
+
 		}
 
 	}
 	private int smallest_node() { 
-
 		Collection<node_data> col = g.getV();
 		Iterator<node_data> it = col.iterator();
-		int ans = it.next().getKey();
-		while(it.hasNext()) {
-			if(g.getNode(ans).getWeight()>it.next().getWeight()) {
-				ans=it.next().getKey();
+		node_data ans=it.next();
+		it=col.iterator();
+		
+		while (it.hasNext()) {
+			node_data temp= it.next();
+			if(temp.getTag()==0) {
+				ans=temp;
+				break;
 			}
 		}
-		return ans;
+		while(it.hasNext()) {
+			node_data t = it.next();
+			if(t.getWeight()<ans.getWeight()&&t.getTag()==1) {
+				ans=t;
+			}
+		}
+		return ans.getKey();
 	}
 	private boolean visitall() { 
 		Collection<node_data> col = g.getV();
@@ -224,9 +254,7 @@ public class Graph_Algo implements graph_algorithms{
 			}
 		}
 		return true;
-
 	}
-	
 
 	public String toString() {
 		return "mygraph"+ this.g;

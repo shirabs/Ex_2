@@ -1,10 +1,7 @@
 package tester;
 
-
-
 import java.util.Collection;
 import java.util.Iterator;
-
 import algorithms.Graph_Algo;
 import algorithms.graph_algorithms;
 import dataStructure.DGraph;
@@ -18,8 +15,6 @@ public class TestForMe {
 
 	public static void main(String[] args) {
 
-
-
 		NodeData x=new NodeData(new Point3D(1, 23, 3));
 		NodeData x1=new NodeData(new Point3D(22, 23, 33));
 		NodeData x2=new NodeData(new Point3D(33, 24, 344));
@@ -28,8 +23,6 @@ public class TestForMe {
 		NodeData x5=new NodeData(new Point3D(66, 28, 335));
 		NodeData x6=new NodeData(new Point3D(77, 29, 31));
 		NodeData x7=new NodeData(new Point3D(72, 59, 81));
-
-
 
 		DGraph y=new DGraph();
 		y.addNode(x);
@@ -56,24 +49,28 @@ public class TestForMe {
 		y.connect(6, 3, 2);
 		y.connect(6, 5, 4);
 		y.connect(7, 6, 8);
+		y.connect(7, 8, 10);
 
 
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
-//		graph z=  a.copy();
-//		System.out.println(z);
-//		z.removeNode(1);
-//		System.out.println(y);
-//		System.out.println(z);
-//		//System.out.println(z);
+		System.out.println(a);
+		System.out.println(a.shortestPath(1, 8));
+		System.out.println(a.shortestPathDist(1, 8));
+		
+		//		graph z=  a.copy();
+		//		System.out.println(z);
+		//		z.removeNode(1);
+		//		System.out.println(y);
+		//		System.out.println(z);
+		//		//System.out.println(z);
 
-
-		System.out.println(a.isConnected());
-
-		a.save("graph y");
-		Graph_Algo b=new Graph_Algo();
-		b.init("graph y");
-		System.out.println(b);
+//				System.out.println(a.isConnected());
+		//
+		//		a.save("graph y");
+		//		Graph_Algo b=new Graph_Algo();
+		//		b.init("graph y");
+		//		System.out.println(b);
 
 
 		//		graph z=  a.copy();

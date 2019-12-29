@@ -9,18 +9,10 @@ public class EdgeData implements edge_data{
 	private int dest;
 	private String info;
 	private double weight;
-	private Color tag;
+	private int tag;
 	
-	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
-	public EdgeData() {
+//	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
 
-		this.src=0;
-		this.dest=0;
-		this.weight=0;
-		this.info="";
-		this.tag=color[0];
-
-	}
 
 	public EdgeData(int start,int end,double w) {
 
@@ -28,7 +20,7 @@ public class EdgeData implements edge_data{
 		this.dest=end;
 		this.weight=w;
 		this.info="";
-		this.tag=color[0];
+		this.tag=0;
 
 	}
 	public EdgeData(EdgeData e) {
@@ -37,7 +29,7 @@ public class EdgeData implements edge_data{
 		this.dest=e.dest;
 		this.weight=e.weight;
 		this.info="";
-		this.tag=color[0];
+		this.tag=0;
 
 	}
 	public EdgeData(int start,int end,double w,String s) {
@@ -46,7 +38,7 @@ public class EdgeData implements edge_data{
 		this.dest=end;
 		this.weight=w;
 		this.info=s;
-		this.tag=color[0];
+		this.tag=0;
 
 	}
 
@@ -81,17 +73,12 @@ public class EdgeData implements edge_data{
 
 	@Override
 	public int getTag() {
-		if(this.tag==color[0])
-			return 0;
-		if(this.tag==color[1])
-			return 1;
-		return 2;
+		return tag;
 	}
 
 	@Override
 	public void setTag(int t) {
-		if(t>=0&&t<3)
-		tag=color[t];
+		this.tag=t;
 
 	}
 	public String toString() {
