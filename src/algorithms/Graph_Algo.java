@@ -16,6 +16,18 @@ import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import dataStructure.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Stack;
+
+import dataStructure.DGraph;
+import dataStructure.NodeData;
+import dataStructure.edge_data;
+import dataStructure.graph;
+import dataStructure.node_data;
+
+
 /**
  * This empty class represents the set of graph-theory algorithms
  * which should be implemented as part of Ex2 - Do edit this class.
@@ -87,9 +99,43 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public boolean isConnected() {
-		// TODO Auto-generated method stub
+		graph temp=this.copy();
+		int counterPoint=1;
+		int counterPoint2=temp.getV().size();
+		boolean flag=true;
+		if(counterPoint2==1) {
+			return true;
+		}
+		Stack<Integer> point=new Stack<Integer>();
+		Collection<node_data> node=	temp.getV();
+		Iterator<node_data> it=node.iterator();
+		int run=it.next().getKey();
+		while(flag){
+			Collection<edge_data> edge=temp.getE(run);
+			Iterator<edge_data> it2=edge.iterator();
+			while(it2.hasNext()) {
+				edge_data t=it2.next();
+				if(!point.contains(t.getDest())) {
+					point.push(t.getDest());
+					counterPoint++;
+				}
+			}
+			temp.removeNode(run);
+
+			if(!point.isEmpty()) {
+				run=point.pop();
+			}
+			else {
+				flag=false;			
+			}
+		}
+		if((counterPoint-counterPoint2)==0) {
+			return true;
+		}
 		return false;
 	}
+
+
 
 	@Override
 	public double shortestPathDist(int src, int dest) {
@@ -139,6 +185,7 @@ public class Graph_Algo implements graph_algorithms{
 			Collection<edge_data> edge=g.getE(it.next().getKey());
 			if(edge==null)
 				break;
+
 			Iterator<edge_data> it2=edge.iterator();
 			while(it2.hasNext()) {
 				edge_data t=it2.next();
@@ -179,9 +226,9 @@ public class Graph_Algo implements graph_algorithms{
 		return true;
 
 	}
+	
+
 	public String toString() {
-		return g.toString();
+		return "mygraph"+ this.g;
 	}
-
-
 }

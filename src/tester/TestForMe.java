@@ -2,10 +2,16 @@ package tester;
 
 
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import algorithms.Graph_Algo;
+import algorithms.graph_algorithms;
 import dataStructure.DGraph;
 import dataStructure.NodeData;
+import dataStructure.edge_data;
 import dataStructure.graph;
+import dataStructure.node_data;
 import utils.Point3D;
 
 public class TestForMe {
@@ -35,11 +41,12 @@ public class TestForMe {
 		y.addNode(x6);
 		y.addNode(x7);
 
+
 		y.connect(1, 2, 2);
 		y.connect(1, 3, 3);
 		y.connect(2, 3, 10);
-		y.connect(2, 1, 4);
 		y.connect(2, 5, 9);
+		y.connect(3, 2, 4);
 		y.connect(3, 4, 7);		
 		y.connect(3, 7, 3);
 		y.connect(3, 5, 3);
@@ -50,6 +57,7 @@ public class TestForMe {
 		y.connect(6, 5, 4);
 		y.connect(7, 6, 8);
 
+
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
 //		graph z=  a.copy();
@@ -59,41 +67,29 @@ public class TestForMe {
 //		System.out.println(z);
 //		//System.out.println(z);
 
+
+		System.out.println(a.isConnected());
+
 		a.save("graph y");
 		Graph_Algo b=new Graph_Algo();
 		b.init("graph y");
 		System.out.println(b);
 
 
+		//		graph z=  a.copy();
+		//		System.out.println(z);
+		//		z.removeNode(1);
+		//		System.out.println(y);
+		//		System.out.println(z);
+		//		//System.out.println(z);
 
-
-
-
+		//a.save("graph y");
 
 
 		//		System.out.println(y);
 		//		System.out.println(y.getEdge(1,3));
 		//System.out.println(x.getTag());
 		//System.out.println(y.nodeSize());
-
-		//		EdgeData y=new EdgeData(x, x1, 2);
-		//		EdgeData y1=new EdgeData(x, x2, 3);
-		//		EdgeData y2=new EdgeData(x, x3, 4);
-		//		EdgeData y3=new EdgeData(x1, x2, 3);
-		//		EdgeData y4=new EdgeData(x3, x2, 2);
-		//		EdgeData y5=new EdgeData(x1, x4, 5);
-		//		EdgeData y6=new EdgeData(x2, x5, 6);
-		//		EdgeData y7=new EdgeData(x3, x6, 9);
-		//		EdgeData y8=new EdgeData(x4, x5, 2);
-		//		EdgeData y9=new EdgeData(x6, x5, 7);
-		//		EdgeData y10=new EdgeData(x4, x7, 1);
-		//		EdgeData y11=new EdgeData(x5, x7, 3);
-
-
-
-
-
-
 	}
 
 }
