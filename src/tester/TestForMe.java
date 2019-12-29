@@ -56,7 +56,7 @@ public class TestForMe {
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
 
-		System.out.println(a);
+		//System.out.println(a);
 		System.out.println(a.shortestPath(1, 8));
 		System.out.println(a.shortestPathDist(1, 8));
 
@@ -67,7 +67,7 @@ public class TestForMe {
 		//		System.out.println(z);
 		//		//System.out.println(z);
 
-		System.out.println(a.isConnected());
+		//System.out.println(a.isConnected());
 		//
 		//		a.save("graph y");
 		//		Graph_Algo b=new Graph_Algo();
