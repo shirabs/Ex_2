@@ -99,6 +99,15 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public boolean isConnected() {
+		boolean a=connect(g);
+		boolean b=Reversegraph(g);
+		if(a==true&&b==true) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean connect(graph g) {
 		graph temp=this.copy();
 		int counterPoint=1;
 		int counterPoint2=temp.getV().size();
@@ -112,6 +121,8 @@ public class Graph_Algo implements graph_algorithms{
 		int run=it.next().getKey();
 		while(flag){
 			Collection<edge_data> edge=temp.getE(run);
+			if(edge==null)
+				break;
 			Iterator<edge_data> it2=edge.iterator();
 			while(it2.hasNext()) {
 				edge_data t=it2.next();
@@ -135,7 +146,27 @@ public class Graph_Algo implements graph_algorithms{
 		return false;
 	}
 
+	public boolean Reversegraph(graph g) {
+		DGraph temp=new DGraph();
+		Collection<node_data> node=	g.getV();
+		Iterator<node_data> it=node.iterator();
+		while(it.hasNext()){
+			temp.addNode(it.next());
+		}
+		it=node.iterator();
 
+		while(it.hasNext()){
+			Collection<edge_data> edge=g.getE(it.next().getKey());
+			if(edge==null)
+				break;
+			Iterator<edge_data> it2=edge.iterator();
+			while(it2.hasNext()) {
+				edge_data t=it2.next();
+				temp.connect(t.getDest(), t.getSrc(), t.getWeight());
+			}
+		}
+		return connect(temp);
+	}
 
 	@Override
 	public double shortestPathDist(int src, int dest) {
@@ -255,6 +286,7 @@ public class Graph_Algo implements graph_algorithms{
 		}
 		return true;
 	}
+
 
 	public String toString() {
 		return "mygraph"+ this.g;

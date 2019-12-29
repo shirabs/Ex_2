@@ -52,12 +52,14 @@ public class TestForMe {
 		y.connect(7, 8, 10);
 
 
+
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
+
 		System.out.println(a);
 		System.out.println(a.shortestPath(1, 8));
 		System.out.println(a.shortestPathDist(1, 8));
-		
+
 		//		graph z=  a.copy();
 		//		System.out.println(z);
 		//		z.removeNode(1);
@@ -65,12 +67,29 @@ public class TestForMe {
 		//		System.out.println(z);
 		//		//System.out.println(z);
 
-//				System.out.println(a.isConnected());
+		System.out.println(a.isConnected());
 		//
 		//		a.save("graph y");
 		//		Graph_Algo b=new Graph_Algo();
 		//		b.init("graph y");
 		//		System.out.println(b);
+
+
+		//System.out.println(a);
+		//		graph z=  a.copy();
+		//		System.out.println(z);
+		//		z.removeNode(1);
+		//		System.out.println(y);
+		//		System.out.println(z);
+		//		//System.out.println(z);
+
+
+
+		//		a.save("graph y");
+		//		Graph_Algo b=new Graph_Algo();
+		//		b.init("graph y");
+		//		System.out.println(b);
+		
 
 
 		//		graph z=  a.copy();
@@ -88,5 +107,6 @@ public class TestForMe {
 		//System.out.println(x.getTag());
 		//System.out.println(y.nodeSize());
 	}
+
 
 }
