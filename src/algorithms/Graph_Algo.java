@@ -21,6 +21,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Stack;
 
+import javax.management.RuntimeErrorException;
+
 import dataStructure.DGraph;
 import dataStructure.NodeData;
 import dataStructure.edge_data;
@@ -199,25 +201,76 @@ public class Graph_Algo implements graph_algorithms{
 				}
 			}
 		}
-		List<node_data> sp = new LinkedList();
+		List<node_data> sp = new ArrayList<node_data>();
 		sp.add(g.getNode(dest));
 		node_data t = g.getNode(dest);
 		while(t.getKey()!=src) {
 			int b=Integer.parseInt(t.getInfo());
-			List<node_data> tsp = new LinkedList();
+			List<node_data> tsp = new ArrayList<node_data>();
 			tsp.add(g.getNode(b));
 			tsp.addAll(sp);
 			sp=tsp;
 			t=g.getNode(b);
 		}
-	
+
 		return sp;
 	}
 
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
-		// TODO Auto-generated method stub
-		return null;
+		if(isConnected()==false) {
+			throw new RuntimeException("this graph not isConnected");
+		}
+		List<Integer>tar=targets;
+		Iterator<Integer> it=tar.iterator();
+		int size=g.getV().size();
+		while(it.hasNext()) {
+			if(it.next()>size) {
+				throw new RuntimeException("The point is not in the graph");
+			}
+		}
+		it=tar.iterator();
+		List<node_data> temp=new ArrayList<node_data>();
+		//-------------------------------------------->good	
+		int end=0;
+		int start=it.next();
+		while(it.hasNext()) {
+
+			if(end!=0) {
+				start=end;
+				end=it.next();
+				System.out.println(start);
+				System.out.println(end);
+				List<node_data> run=shortestPath(start,end) ;
+				//System.out.println(run);
+				Iterator<node_data> it2=run.iterator();
+
+				//System.out.println(run);
+				while(it2.hasNext()) {
+					temp.add(it2.next());
+					//System.out.println(it2.next());
+				}
+				it2=run.iterator();
+				//--------------------------------------->good	
+				//tar=it=liststarting
+				
+				int r=0;
+				while(it2.hasNext()) {	
+					if(tar.contains(it2.next().getKey())) {
+						tar.remove(run.get(r));
+					}
+					r++;
+				}
+				//start=end;
+
+				it2=run.iterator();
+				//end=start;
+			}
+			else {
+				end=start;
+			}
+		}
+		return temp;
 	}
 
 	@Override
@@ -260,7 +313,7 @@ public class Graph_Algo implements graph_algorithms{
 		Iterator<node_data> it = col.iterator();
 		node_data ans=it.next();
 		it=col.iterator();
-		
+
 		while (it.hasNext()) {
 			node_data temp= it.next();
 			if(temp.getTag()==0) {
