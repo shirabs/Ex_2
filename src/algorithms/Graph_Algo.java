@@ -105,6 +105,8 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public boolean isConnected() {
+		if(g.edgeSize()==0)
+			return true;
 		boolean a=connect(g);
 		boolean b=Reversegraph(g);
 		if(a==true&&b==true) {
@@ -233,24 +235,12 @@ public class Graph_Algo implements graph_algorithms{
 		return sp;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
 		if(isConnected()==false) {
 			throw new RuntimeException("this graph not isConnected");
 		}
-		List<Integer>tar=targets;
+		List<Integer>tar=new ArrayList<Integer>(targets);
 		Iterator<Integer> it=tar.iterator();
 		int size=g.getV().size();
 		while(it.hasNext()) {
@@ -259,49 +249,26 @@ public class Graph_Algo implements graph_algorithms{
 			}
 		}
 		it=tar.iterator();
-		//my return
+		//my List return
 		List<node_data> temp=new ArrayList<node_data>();
-		//-------------------------------------------->good	
 		int end=0;
 		int start=it.next();
-		//System.out.println(start);
+		temp.add(g.getNode(start));
 		while(it.hasNext()) {
-
 			if(end!=0) {
 				start=end;
 				end=it.next();
-				//	System.out.println(start);
-				//System.out.println(end);
-
 				List<node_data> run=shortestPath(start,end) ;
-				//				System.out.println(run);
 				Iterator<node_data> it2=run.iterator();
-
-				//System.out.println(run);
 				while(it2.hasNext()) {
-					temp.add(it2.next());
-					//System.out.println(it2.next());
+					node_data node=it2.next();
+					if(tar.contains(node.getKey()))
+						tar.remove(tar.indexOf(node.getKey()));
 				}
-				it2=run.iterator();
-				//--------------------------------------->good	
-				//tar=it=liststarting
-
-				int r=0;
-				while(it2.hasNext()) {	
-					if(tar.contains(it2.next().getKey())) {
-						System.out.println();
-						//System.out.println();
-						System.out.println(tar.remove(run.get(r)));
-						//System.out.println(tar);
-					}
-					else {
-						r++;
-					}
-				}
-				//start=end;
-
-				it2=run.iterator();
-				//end=start;
+				run.remove(0);
+				temp.addAll(run);
+				it=tar.iterator();
+				//System.out.println(tar);
 			}
 			else {
 				end=start;

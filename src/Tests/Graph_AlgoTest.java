@@ -1,15 +1,11 @@
 package Tests;
 
-import java.awt.Color;
-
-import java.util.Collection;
-import java.util.Iterator;
 import org.junit.jupiter.api.Test;
 import algorithms.*;
 import dataStructure.*;
 import gui.gui_graph;
 import utils.Point3D;
-import utils.StdDraw;
+
 
 class Graph_AlgoTest {
 
@@ -19,9 +15,8 @@ class Graph_AlgoTest {
 		graph_algorithms ga=new Graph_Algo();
 		ga.init(g);
 		gui_graph.drowgraph(g);
-//		g.removeNode(5);
-//		drowgraph(g);
-	
+		g.removeNode(5);
+		gui_graph.drowgraph(g);
 	}
 	
 
