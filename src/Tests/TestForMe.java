@@ -79,7 +79,7 @@ public class TestForMe {
 //		System.out.println(a.shortestPathDist(1, 8));
 
 
-		System.out.println(a.TSP(targets));
+//		System.out.println(a.TSP(targets));
 		//System.out.println(a);
 				//	System.out.println(a.shortestPath(6,7 ));
 			//	System.out.println(a.shortestPathDist(6,7 ));

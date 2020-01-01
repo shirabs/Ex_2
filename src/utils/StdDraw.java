@@ -75,9 +75,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+
+
 import algorithms.Graph_Algo;
 import algorithms.graph_algorithms;
 import dataStructure.graph;
+
 
 /**
  *  The {@code StdDraw} class provides a basic capability for
@@ -727,14 +730,17 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 				Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 		menu.add(menuItem1);
 
-		menu = new JMenu("algorithms");
-		menuBar.add(menu);
-		JMenuItem menuItem2 = new JMenuItem("shortestPath");
-//		menuItem2.
-		menu.add(menuItem2);
-		JMenuItem menuItem3 = new JMenuItem("is connected");
-//		menuItem3.getActionListeners();
-		menu.add(menuItem3);
+//		JMenu menu2 =new JMenu("algorithms");
+//		menuBar.add(menu2);
+//		JMenuItem sp = new JMenuItem("shortestPath");
+//		sp.addActionListener(new ActionListener() {
+//			  public void actionPerformed(ActionEvent e) {
+//				   Graph_Algo.drowShortestpart();
+//				  }});
+//		menu2.add(sp);
+//		JMenuItem menuItem3 = new JMenuItem("is connected");
+////		menuItem3.getActionListeners();
+//		menu.add(menuItem3);
 		return menuBar;
 	}
 

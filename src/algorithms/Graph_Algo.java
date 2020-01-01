@@ -29,7 +29,6 @@ import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
 
-
 /**
  * This empty class represents the set of graph-theory algorithms
  * which should be implemented as part of Ex2 - Do edit this class.
@@ -53,10 +52,12 @@ public class Graph_Algo implements graph_algorithms{
 	}
 
 	@Override
+	//init graph from file
 	public void init(String file_name) {
 		try 
 		{
 			FileReader reader = new FileReader(file_name);
+
 			final TypeToken<graph> requestListTypeToken = new TypeToken<graph>() {};
 			final RuntimeTypeAdapterFactory<graph> graphTypeFactory = RuntimeTypeAdapterFactory
 					.of(graph.class, "type") 
@@ -88,6 +89,7 @@ public class Graph_Algo implements graph_algorithms{
 	}
 
 	@Override
+	//save graph to file
 	public void save(String file_name) {
 		GsonBuilder gson= new GsonBuilder();
 		String wj= gson.create().toJson(g);
@@ -115,7 +117,8 @@ public class Graph_Algo implements graph_algorithms{
 		return false;
 	}
 
-	public boolean connect(graph g) {
+	//check if the graph connect
+	private boolean connect(graph g) {
 		graph temp=this.copy();
 		int counterPoint=1;
 		int counterPoint2=temp.getV().size();
@@ -154,7 +157,8 @@ public class Graph_Algo implements graph_algorithms{
 		return false;
 	}
 
-	public boolean Reversegraph(graph g) {
+	//revers the graph 
+	private boolean Reversegraph(graph g) {
 		DGraph temp=new DGraph();
 		Collection<node_data> node=	g.getV();
 		Iterator<node_data> it=node.iterator();
@@ -194,6 +198,7 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
+		//check that have in the graph the node src and drst
 		if(!g.getV().contains(g.getNode(src))||!g.getV().contains(g.getNode(dest)))
 			throw new RuntimeException("not have src or dest");
 		upnode_max_and_notvisit_and_info();
@@ -243,6 +248,7 @@ public class Graph_Algo implements graph_algorithms{
 		List<Integer>tar=new ArrayList<Integer>(targets);
 		Iterator<Integer> it=tar.iterator();
 		int size=g.getV().size();
+		//check all the node with the key from the targets in the graph
 		while(it.hasNext()) {
 			if(it.next()>size) {
 				throw new RuntimeException("The point is not in the graph");
@@ -260,6 +266,7 @@ public class Graph_Algo implements graph_algorithms{
 				end=it.next();
 				List<node_data> run=shortestPath(start,end) ;
 				Iterator<node_data> it2=run.iterator();
+
 				while(it2.hasNext()) {
 					node_data node=it2.next();
 					if(tar.contains(node.getKey()))
@@ -300,6 +307,7 @@ public class Graph_Algo implements graph_algorithms{
 		return c;
 	}
 
+	//update the info and visit and max_value in all nodes in the graph
 	private void upnode_max_and_notvisit_and_info() { 
 		Collection<node_data> col = g.getV();
 		Iterator<node_data> it = col.iterator();
@@ -310,8 +318,9 @@ public class Graph_Algo implements graph_algorithms{
 			t.setWeight(Double.MAX_VALUE);
 
 		}
-
 	}
+
+	//found the node with the smalle weight that dont visit
 	private int smallest_node() { 
 		Collection<node_data> col = g.getV();
 		Iterator<node_data> it = col.iterator();
@@ -333,6 +342,8 @@ public class Graph_Algo implements graph_algorithms{
 		}
 		return ans.getKey();
 	}
+
+	//check if visit in all nodes on the graph
 	private boolean visitall() { 
 		Collection<node_data> col = g.getV();
 		Iterator<node_data> it = col.iterator();
@@ -347,5 +358,14 @@ public class Graph_Algo implements graph_algorithms{
 
 	public String toString() {
 		return "mygraph"+ this.g;
+	}
+
+	public static void drowShortestpart(graph_algorithms ga) {
+		List<node_data> sp=ga.shortestPath(1, NodeData.id);
+		Iterator<node_data> it=sp.iterator();
+		while(it.hasNext()) {
+			
+		}
+
 	}
 }

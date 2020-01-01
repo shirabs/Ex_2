@@ -1,8 +1,15 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.Iterator;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import algorithms.Graph_Algo;
 import algorithms.graph_algorithms;
@@ -12,8 +19,6 @@ import dataStructure.node_data;
 import utils.StdDraw;
 
 public class gui_graph {
-
-
 
 	public static void drowgraph(graph g) {
 		graph_algorithms ga=new Graph_Algo();
@@ -47,7 +52,7 @@ public class gui_graph {
 				while (it2.hasNext()) {
 					edge_data edge=it2.next();
 					StdDraw.setPenRadius(0.0005);
-					StdDraw.setPenColor(Color.GREEN);
+					StdDraw.setPenColor(Color.BLUE);
 					double x1=g.getNode(edge.getSrc()).getLocation().x();
 					double x2=g.getNode(edge.getDest()).getLocation().x();
 					double y1=g.getNode(edge.getSrc()).getLocation().y();
@@ -55,10 +60,11 @@ public class gui_graph {
 					StdDraw.line(x1, y1, x2, y2);
 					StdDraw.text((x1+x2)/2, (y1+y2)/2, edge.getWeight()+"");
 					StdDraw.setPenRadius(0.01);
-					StdDraw.setPenColor(Color.PINK);
+					StdDraw.setPenColor(Color.ORANGE);
 					StdDraw.point((9.4*x1+0.6*x2)/10, (9.4*y1+0.6*y2)/10);
 				}
 			}
 		}
+		
 	}
 }
