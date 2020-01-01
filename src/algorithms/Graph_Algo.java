@@ -73,7 +73,7 @@ public class Graph_Algo implements graph_algorithms{
 					.create()
 					.fromJson(reader,requestListTypeToken.getType());
 			this.g= result2;
-			System.out.println(result2);
+//			System.out.println(result2);
 
 		} 
 		catch (FileNotFoundException e) {
@@ -85,7 +85,7 @@ public class Graph_Algo implements graph_algorithms{
 	public void save(String file_name) {
 		GsonBuilder gson= new GsonBuilder();
 		String wj= gson.create().toJson(g);
-		System.out.println(wj);
+//		System.out.println(wj);
 		try {
 			PrintWriter pw= new PrintWriter(new File(file_name));
 			pw.write(wj);
@@ -170,17 +170,24 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public double shortestPathDist(int src, int dest) {
-		List<node_data> sp=shortestPath(src, dest);
-		Iterator< node_data> it=sp.iterator();
-		double ans=0;
-		while(it.hasNext()) {
-			ans=it.next().getWeight();
+		try {
+			List<node_data> sp=shortestPath(src, dest);
+			Iterator< node_data> it=sp.iterator();
+			double ans=0;
+			while(it.hasNext()) {
+				ans=it.next().getWeight();
+			}
+			return ans;
 		}
-		return ans;
+		catch (Exception e) {
+			throw new RuntimeException("not have src or dest");
+		}
 	}
 
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
+		if(!g.getV().contains(g.getNode(src))||!g.getV().contains(g.getNode(dest)))
+			throw new RuntimeException("not have src or dest");
 		upnode_max_and_notvisit_and_info();
 		g.getNode(src).setWeight(0);
 		while(!visitall()) {
@@ -203,14 +210,19 @@ public class Graph_Algo implements graph_algorithms{
 		sp.add(g.getNode(dest));
 		node_data t = g.getNode(dest);
 		while(t.getKey()!=src) {
-			int b=Integer.parseInt(t.getInfo());
-			List<node_data> tsp = new LinkedList();
-			tsp.add(g.getNode(b));
-			tsp.addAll(sp);
-			sp=tsp;
-			t=g.getNode(b);
+			try {
+				int b=Integer.parseInt(t.getInfo());
+				List<node_data> tsp = new LinkedList();
+				tsp.add(g.getNode(b));
+				tsp.addAll(sp);
+				sp=tsp;
+				t=g.getNode(b);
+			}
+			catch (Exception e) {
+				throw new RuntimeException("not conected");
+			}
 		}
-	
+
 		return sp;
 	}
 
@@ -260,7 +272,7 @@ public class Graph_Algo implements graph_algorithms{
 		Iterator<node_data> it = col.iterator();
 		node_data ans=it.next();
 		it=col.iterator();
-		
+
 		while (it.hasNext()) {
 			node_data temp= it.next();
 			if(temp.getTag()==0) {
@@ -270,7 +282,7 @@ public class Graph_Algo implements graph_algorithms{
 		}
 		while(it.hasNext()) {
 			node_data t = it.next();
-			if(t.getWeight()<ans.getWeight()&&t.getTag()==1) {
+			if(t.getWeight()<ans.getWeight()&&t.getTag()==0) {
 				ans=t;
 			}
 		}

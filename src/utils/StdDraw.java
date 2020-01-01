@@ -75,6 +75,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import algorithms.Graph_Algo;
+import algorithms.graph_algorithms;
+import dataStructure.graph;
+
 /**
  *  The {@code StdDraw} class provides a basic capability for
  *  creating drawings with your programs. It uses a simple graphics model that
@@ -722,6 +726,15 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 		menuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
 				Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 		menu.add(menuItem1);
+
+		menu = new JMenu("algorithms");
+		menuBar.add(menu);
+		JMenuItem menuItem2 = new JMenuItem("shortestPath");
+//		menuItem2.
+		menu.add(menuItem2);
+		JMenuItem menuItem3 = new JMenuItem("is connected");
+//		menuItem3.getActionListeners();
+		menu.add(menuItem3);
 		return menuBar;
 	}
 

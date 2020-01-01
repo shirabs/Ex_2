@@ -1,4 +1,4 @@
-package tester;
+package Tests;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -15,14 +15,16 @@ public class TestForMe {
 
 	public static void main(String[] args) {
 
-		NodeData x=new NodeData(new Point3D(1, 23, 3));
-		NodeData x1=new NodeData(new Point3D(22, 23, 33));
-		NodeData x2=new NodeData(new Point3D(33, 24, 344));
-		NodeData x3=new NodeData(new Point3D(44, 25, 33));
-		NodeData x4=new NodeData(new Point3D(55, 27, 32));
-		NodeData x5=new NodeData(new Point3D(66, 28, 335));
-		NodeData x6=new NodeData(new Point3D(77, 29, 31));
-		NodeData x7=new NodeData(new Point3D(72, 59, 81));
+		
+		NodeData x=new NodeData(new Point3D(11, 1, 0));
+		NodeData x1=new NodeData(new Point3D(22, 10, 0));
+		NodeData x2=new NodeData(new Point3D(33, 24, 0));
+		NodeData x3=new NodeData(new Point3D(44, 20, 0));
+		NodeData x4=new NodeData(new Point3D(55, 80, 0));
+		NodeData x5=new NodeData(new Point3D(66, 40, 0));
+		NodeData x6=new NodeData(new Point3D(77, 7, 0));
+		NodeData x7=new NodeData(new Point3D(88, 59, 0));
+		//NodeData x8=new NodeData(new Point3D(10,9, 5));
 
 		DGraph y=new DGraph();
 		y.addNode(x);
@@ -33,7 +35,7 @@ public class TestForMe {
 		y.addNode(x5);
 		y.addNode(x6);
 		y.addNode(x7);
-
+		//y.addNode(x8);
 
 		y.connect(1, 2, 2);
 		y.connect(1, 3, 3);
@@ -53,11 +55,12 @@ public class TestForMe {
 
 
 
+
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
 
 		System.out.println(a);
-		System.out.println(a.shortestPath(1, 8));
+		System.out.println(a.shortestPath(6, 7));
 		System.out.println(a.shortestPathDist(1, 8));
 
 		//		graph z=  a.copy();
@@ -67,12 +70,12 @@ public class TestForMe {
 		//		System.out.println(z);
 		//		//System.out.println(z);
 
-		System.out.println(a.isConnected());
+//		System.out.println(a.isConnected());
 		//
-		//		a.save("graph y");
-		//		Graph_Algo b=new Graph_Algo();
-		//		b.init("graph y");
-		//		System.out.println(b);
+//				a.save("graph y");
+//				Graph_Algo b=new Graph_Algo();
+//				b.init("graph y");
+//				System.out.println(b);
 
 
 		//System.out.println(a);
