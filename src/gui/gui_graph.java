@@ -4,14 +4,22 @@ import java.awt.Color;
 import java.util.Collection;
 import java.util.Iterator;
 
+import algorithms.Graph_Algo;
+import algorithms.graph_algorithms;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
 import utils.StdDraw;
 
 public class gui_graph {
-	
+
+
+
 	public static void drowgraph(graph g) {
+		graph_algorithms ga=new Graph_Algo();
+		ga.init(g);
+		ga.save("graph");
+
 		//update the range
 		StdDraw.setCanvasSize();
 		StdDraw.setXscale(0,100);
@@ -52,7 +60,5 @@ public class gui_graph {
 				}
 			}
 		}
-
-	
 	}
 }

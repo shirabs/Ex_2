@@ -29,6 +29,7 @@ class Ex2Test {
 	private static Point3D min = new Point3D(0,0,0);
 	private static Point3D max = new Point3D(100,100,0);
 	@BeforeAll
+	
 	static void setUpBeforeClass() throws Exception {
 		_graph = tinyGraph();
 	}
@@ -52,11 +53,11 @@ class Ex2Test {
 	}
 	
 	private static graph tinyGraph() {
-		graph ans = new DGraph();
+		graph ans = new DGraph();	
 		return ans;
 	}
 	boolean drawGraph(graph g) { 
-		// YOUR GUI graph draw 
+//		gui_graph.drowgraph(g);
 		return true;
 		
 	}

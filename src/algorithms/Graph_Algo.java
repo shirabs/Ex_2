@@ -42,7 +42,7 @@ public class Graph_Algo implements graph_algorithms{
 	public Graph_Algo() {
 		g=new DGraph();
 	}
-	
+
 	public Graph_Algo(graph g) {
 		init(g);
 	}
@@ -79,7 +79,7 @@ public class Graph_Algo implements graph_algorithms{
 					.create()
 					.fromJson(reader,requestListTypeToken.getType());
 			this.g= result2;
-//			System.out.println(result2);
+			//			System.out.println(result2);
 
 		} 
 		catch (FileNotFoundException e) {
@@ -91,7 +91,7 @@ public class Graph_Algo implements graph_algorithms{
 	public void save(String file_name) {
 		GsonBuilder gson= new GsonBuilder();
 		String wj= gson.create().toJson(g);
-//		System.out.println(wj);
+		//		System.out.println(wj);
 		try {
 			PrintWriter pw= new PrintWriter(new File(file_name));
 			pw.write(wj);
@@ -105,6 +105,8 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public boolean isConnected() {
+		if(g.edgeSize()==0)
+			return true;
 		boolean a=connect(g);
 		boolean b=Reversegraph(g);
 		if(a==true&&b==true) {
@@ -238,7 +240,7 @@ public class Graph_Algo implements graph_algorithms{
 		if(isConnected()==false) {
 			throw new RuntimeException("this graph not isConnected");
 		}
-		List<Integer>tar=targets;
+		List<Integer>tar=new ArrayList<Integer>(targets);
 		Iterator<Integer> it=tar.iterator();
 		int size=g.getV().size();
 		while(it.hasNext()) {
@@ -251,42 +253,29 @@ public class Graph_Algo implements graph_algorithms{
 		//-------------------------------------------->good	
 		int end=0;
 		int start=it.next();
+		temp.add(g.getNode(start));
 		while(it.hasNext()) {
-
 			if(end!=0) {
 				start=end;
 				end=it.next();
-				System.out.println(start);
-				System.out.println(end);
 				List<node_data> run=shortestPath(start,end) ;
-				//System.out.println(run);
 				Iterator<node_data> it2=run.iterator();
-
-				//System.out.println(run);
-				while(it2.hasNext()) {
-					temp.add(it2.next());
-					//System.out.println(it2.next());
-				}
-				it2=run.iterator();
-				//--------------------------------------->good	
-				//tar=it=liststarting
 				
-				int r=0;
-				while(it2.hasNext()) {	
-					if(tar.contains(it2.next().getKey())) {
-						tar.remove(run.get(r));
-					}
-					r++;
+				while(it2.hasNext()) {
+					node_data node=it2.next();
+					if(tar.contains(node.getKey()))
+						tar.remove(tar.indexOf(node.getKey()));
 				}
-				//start=end;
-
-				it2=run.iterator();
-				//end=start;
+				run.remove(0);
+				temp.addAll(run);
+				it=tar.iterator();
+				System.out.println(tar);
 			}
 			else {
 				end=start;
 			}
 		}
+
 		return temp;
 	}
 

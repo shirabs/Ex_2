@@ -61,20 +61,21 @@ public class TestForMe {
 
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
-//		ArrayList<Integer> targets=new ArrayList<Integer>();
-//		targets.add(1);
-//		targets.add(6);
-//		targets.add(7);
-//		targets.add(2);
-//		targets.add(5);
+		ArrayList<Integer> targets=new ArrayList<Integer>();
+		targets.add(1);
+		targets.add(6);
+		targets.add(7);
+		targets.add(2);
+		targets.add(5);
 
 
 
-		System.out.println(a);
-		System.out.println(a.shortestPath(1, 8));
-		System.out.println(a.shortestPathDist(1, 8));
+//		System.out.println(a);
+//		System.out.println(a.shortestPath(1, 8));
+//		System.out.println(a.shortestPathDist(1, 8));
 
-//		System.out.println(a.TSP(targets));
+
+		System.out.println(a.TSP(targets));
 		//System.out.println(a);
 				//	System.out.println(a.shortestPath(6,7 ));
 			//	System.out.println(a.shortestPathDist(6,7 ));
