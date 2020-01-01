@@ -16,7 +16,7 @@ class NodeDataTest {
 //		System.out.println(x.getKey()+"a");
 		assertEquals(11,x.getKey());
 		assertEquals(new Point3D(12,2,3), x.getLocation());
-		assertEquals(Double.POSITIVE_INFINITY, x.getWeight());
+		assertEquals(Double.MAX_VALUE, x.getWeight());
 		assertEquals(0, x.getTag());
 	}
 
@@ -52,7 +52,7 @@ class NodeDataTest {
 	void testGetWeight() {
 		Point3D p=new Point3D(1, 2, 3);
 		NodeData x5=new NodeData(p);	
-		assertEquals(Double.POSITIVE_INFINITY, x5.getWeight());
+		assertEquals(Double.MAX_VALUE, x5.getWeight());
 	}
 
 	@Test
@@ -67,7 +67,7 @@ class NodeDataTest {
 	void testGetInfo() {
 		Point3D p=new Point3D(1, 2, 3);
 		NodeData x7=new NodeData(p);
-		assertEquals(null, x7.getInfo());
+		assertEquals("", x7.getInfo());
 	}
 
 	@Test

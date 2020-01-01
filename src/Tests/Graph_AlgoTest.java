@@ -1,3 +1,5 @@
+
+
 package Tests;
 
 import org.junit.jupiter.api.Test;
@@ -8,20 +10,14 @@ import utils.Point3D;
 
 
 class Graph_AlgoTest {
-
 	public static void main(String[] args) {
-
-		graph g=buildgraph();
-		graph_algorithms ga=new Graph_Algo();
-		ga.init(g);
-		gui_graph.drowgraph(g);
-		g.removeNode(5);
-		gui_graph.drowgraph(g);
-	}
-	
-
-	private static graph buildgraph() {
 		
+	graph y=buildgraph();
+	graph_algorithms a= new Graph_Algo(y);
+	gui_graph.drowgraph(y);
+	}
+	private static graph buildgraph() {
+
 		NodeData x=new NodeData(new Point3D(11, 1, 0));
 		NodeData x1=new NodeData(new Point3D(22, 10, 0));
 		NodeData x2=new NodeData(new Point3D(33, 24, 0));
@@ -66,8 +62,8 @@ class Graph_AlgoTest {
 	void test() {
 		//		fail("Not yet implemented");
 	}
-	
-	
+
+
 
 
 }
