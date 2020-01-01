@@ -92,9 +92,15 @@ class DGraphTest {
 	@Test
 	void testConnect() {
 		NodeData node= new NodeData(new Point3D(5, 4, 0));
+		NodeData node2= new NodeData(new Point3D(6, 10, 0));
 		y.addNode(node);
+		y.addNode(node2);
 		int sume=y.edgeSize();
-		y.connect(1, node.getKey(), 5);
+		//can to add connect
+		y.connect(node2.getKey(), node.getKey(), 5);
+		assertEquals(sume+1, y.edgeSize());
+		//dont can add connect
+		y.connect(0, 7, 5);
 		assertEquals(sume+1, y.edgeSize());
 	}
 
@@ -126,10 +132,9 @@ class DGraphTest {
 		int t=allnode.size();
 		while(t!=0) {
 			y.removeNode(t);
+			t--;
 		}
 		assertEquals(0,y.nodeSize());
-			
-
 	}
 
 	@Test
@@ -143,7 +148,9 @@ class DGraphTest {
 
 	@Test
 	void testNodeSize() {
-		assertEquals(9, y.nodeSize());;
+		int t=y.nodeSize();
+		y.addNode(new NodeData());
+		assertEquals(t+1, y.nodeSize());;
 	}
 
 	@Test
