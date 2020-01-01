@@ -42,7 +42,7 @@ public class Graph_Algo implements graph_algorithms{
 	public Graph_Algo() {
 		g=new DGraph();
 	}
-	
+
 	public Graph_Algo(graph g) {
 		init(g);
 	}
@@ -79,7 +79,7 @@ public class Graph_Algo implements graph_algorithms{
 					.create()
 					.fromJson(reader,requestListTypeToken.getType());
 			this.g= result2;
-//			System.out.println(result2);
+			//			System.out.println(result2);
 
 		} 
 		catch (FileNotFoundException e) {
@@ -91,7 +91,7 @@ public class Graph_Algo implements graph_algorithms{
 	public void save(String file_name) {
 		GsonBuilder gson= new GsonBuilder();
 		String wj= gson.create().toJson(g);
-//		System.out.println(wj);
+		//		System.out.println(wj);
 		try {
 			PrintWriter pw= new PrintWriter(new File(file_name));
 			pw.write(wj);
@@ -233,6 +233,18 @@ public class Graph_Algo implements graph_algorithms{
 		return sp;
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
 		if(isConnected()==false) {
@@ -247,19 +259,22 @@ public class Graph_Algo implements graph_algorithms{
 			}
 		}
 		it=tar.iterator();
+		//my return
 		List<node_data> temp=new ArrayList<node_data>();
 		//-------------------------------------------->good	
 		int end=0;
 		int start=it.next();
+		//System.out.println(start);
 		while(it.hasNext()) {
 
 			if(end!=0) {
 				start=end;
 				end=it.next();
-				System.out.println(start);
-				System.out.println(end);
+				//	System.out.println(start);
+				//System.out.println(end);
+
 				List<node_data> run=shortestPath(start,end) ;
-				//System.out.println(run);
+				//				System.out.println(run);
 				Iterator<node_data> it2=run.iterator();
 
 				//System.out.println(run);
@@ -270,13 +285,18 @@ public class Graph_Algo implements graph_algorithms{
 				it2=run.iterator();
 				//--------------------------------------->good	
 				//tar=it=liststarting
-				
+
 				int r=0;
 				while(it2.hasNext()) {	
 					if(tar.contains(it2.next().getKey())) {
-						tar.remove(run.get(r));
+						System.out.println();
+						//System.out.println();
+						System.out.println(tar.remove(run.get(r)));
+						//System.out.println(tar);
 					}
-					r++;
+					else {
+						r++;
+					}
 				}
 				//start=end;
 
