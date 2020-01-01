@@ -1,7 +1,10 @@
 package Tests;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+
 import algorithms.Graph_Algo;
 import algorithms.graph_algorithms;
 import dataStructure.DGraph;
@@ -47,7 +50,7 @@ public class TestForMe {
 		y.connect(3, 5, 3);
 		y.connect(4, 7, 12);
 		y.connect(4, 1, 6);
-		y.connect(5, 6, 5);
+		y.connect(5, 6, 1);
 		y.connect(6, 3, 2);
 		y.connect(6, 5, 4);
 		y.connect(7, 6, 8);
@@ -58,10 +61,24 @@ public class TestForMe {
 
 		Graph_Algo a=new Graph_Algo();
 		a.init(y);
+//		ArrayList<Integer> targets=new ArrayList<Integer>();
+//		targets.add(1);
+//		targets.add(6);
+//		targets.add(7);
+//		targets.add(2);
+//		targets.add(5);
+
+
 
 		System.out.println(a);
-		System.out.println(a.shortestPath(6, 7));
+		System.out.println(a.shortestPath(1, 8));
 		System.out.println(a.shortestPathDist(1, 8));
+
+//		System.out.println(a.TSP(targets));
+		//System.out.println(a);
+				//	System.out.println(a.shortestPath(6,7 ));
+			//	System.out.println(a.shortestPathDist(6,7 ));
+
 
 		//		graph z=  a.copy();
 		//		System.out.println(z);
@@ -70,7 +87,11 @@ public class TestForMe {
 		//		System.out.println(z);
 		//		//System.out.println(z);
 
+
 //		System.out.println(a.isConnected());
+
+		//System.out.println(a.isConnected());
+
 		//
 //				a.save("graph y");
 //				Graph_Algo b=new Graph_Algo();
@@ -92,7 +113,7 @@ public class TestForMe {
 		//		Graph_Algo b=new Graph_Algo();
 		//		b.init("graph y");
 		//		System.out.println(b);
-		
+
 
 
 		//		graph z=  a.copy();
@@ -110,6 +131,47 @@ public class TestForMe {
 		//System.out.println(x.getTag());
 		//System.out.println(y.nodeSize());
 	}
+	/*
+	 * 
+		}
+
+		it1=tar1.iterator();
+		ArrayList<NodeData> temp=new ArrayList<NodeData>();
+		while(it1.hasNext()) {
+			if(tar2.contains(it1.next())) {
+				tar2.remove(0);
+				it2=tar2.iterator();
+			}
+			double y=Double.POSITIVE_INFINITY;
+			int counter=0;
+
+			while(it2.hasNext()) {
+				//System.out.println(it2.next());
+				System.out.println(y);
+	//-------->			
+				if(shortestPathDist(it1.next().intValue(), it2.next().intValue())<y) {
+					y=shortestPathDist(it1.next(), it2.next());
+					counter=it2.next();	
+
+				}
+			}
+			List<node_data> mylist=shortestPath(it1.next(), counter);
+			Iterator<node_data> it=mylist.iterator();
+			while(it.hasNext()) {
+				temp.add((NodeData) it.next());
+				if(tar1.contains(it.next().getKey())) {
+					tar1.remove(it.next().getKey());
+					tar2.remove(it.next().getKey());
+					it1=tar1.iterator();
+					it2=tar2.iterator();
+				}
+			}
+			it1=tar1.iterator();
+			it2=tar2.iterator();
+
+		}
+
+	 */
 
 
 }
