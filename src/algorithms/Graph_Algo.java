@@ -2,12 +2,14 @@ package algorithms;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.List;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -28,6 +30,7 @@ import dataStructure.NodeData;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
+import utils.StdDraw;
 
 /**
  * This empty class represents the set of graph-theory algorithms
@@ -275,7 +278,6 @@ public class Graph_Algo implements graph_algorithms{
 				run.remove(0);
 				temp.addAll(run);
 				it=tar.iterator();
-				//System.out.println(tar);
 			}
 			else {
 				end=start;
@@ -359,13 +361,6 @@ public class Graph_Algo implements graph_algorithms{
 	public String toString() {
 		return "mygraph"+ this.g;
 	}
-
-	public static void drowShortestpart(graph_algorithms ga) {
-		List<node_data> sp=ga.shortestPath(1, NodeData.id);
-		Iterator<node_data> it=sp.iterator();
-		while(it.hasNext()) {
-			
-		}
-
-	}
+	
+	
 }

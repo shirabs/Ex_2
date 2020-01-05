@@ -1,59 +1,74 @@
 package Tests;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import algorithms.Graph_Algo;
+import algorithms.graph_algorithms;
+import dataStructure.graph;
+import dataStructure.node_data;
 
 class Graph_AlgoTest {
 
-	@Test
-	void testGraph_Algo() {
-		fail("Not yet implemented");
-	}
+	private static graph_algorithms ga;
 
-	@Test
-	void testGraph_AlgoGraph() {
-		fail("Not yet implemented");
+	@BeforeAll
+	static void testInitGraph() {
+		ga=new Graph_Algo(DGraphTest.buildgraph());
 	}
-
-	@Test
-	void testInitGraph() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testInitString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	@Test	
 	void testSave() {
-		fail("Not yet implemented");
+		ga.save("graph");
+	}
+	
+	@Test
+	void testInitString(){
+		graph_algorithms gt=new Graph_Algo();
+		gt.init("graph y");
+		gt.equals(ga);
 	}
 
 	@Test
-	void testIsConnected() {
-		fail("Not yet implemented");
+	void testIsConnect() {
+		assertEquals(true, ga.isConnected());
 	}
-
+	
 	@Test
 	void testShortestPathDist() {
-		fail("Not yet implemented");
+		assertEquals(ga.shortestPathDist(6, 3), 2);
 	}
-
+	
 	@Test
 	void testShortestPath() {
-		fail("Not yet implemented");
+		assertEquals(ga.shortestPath(5, 2).size(), 4);
 	}
-
+	
 	@Test
 	void testTSP() {
-		fail("Not yet implemented");
+		List< Integer> t=new LinkedList<Integer>(); 
+		t.add(1);
+		t.add(5);
+		t.add(7);
+		List<node_data> a=ga.TSP(t);
+		assertEquals(true,a.size()>=3);
 	}
 
 	@Test
 	void testCopy() {
-		fail("Not yet implemented");
+		graph y=ga.copy();
+		graph t=DGraphTest.buildgraph();
+		assertEquals(false,t.equals(y));
+
 	}
+	
+
+
 
 }

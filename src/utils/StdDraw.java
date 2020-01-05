@@ -720,6 +720,8 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 	}
 
 	// create the menu bar (changed to private)
+	public static JMenuItem spButton;
+	public static JMenuItem isConnectedButton;
 	private static JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
@@ -730,17 +732,12 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 				Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 		menu.add(menuItem1);
 
-//		JMenu menu2 =new JMenu("algorithms");
-//		menuBar.add(menu2);
-//		JMenuItem sp = new JMenuItem("shortestPath");
-//		sp.addActionListener(new ActionListener() {
-//			  public void actionPerformed(ActionEvent e) {
-//				   Graph_Algo.drowShortestpart();
-//				  }});
-//		menu2.add(sp);
-//		JMenuItem menuItem3 = new JMenuItem("is connected");
-////		menuItem3.getActionListeners();
-//		menu.add(menuItem3);
+		JMenu menu2 =new JMenu("algorithms");
+		menuBar.add(menu2);
+		spButton = new JMenuItem("shortestPath");
+		menu2.add(spButton);
+		isConnectedButton = new JMenuItem("is connected");		
+		menu2.add(isConnectedButton);
 		return menuBar;
 	}
 
