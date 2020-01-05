@@ -1,5 +1,4 @@
 
-
 package Tests;
 
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,8 @@ class gui_graphTest {
 	graph y=buildgraph();
 	graph_algorithms a= new Graph_Algo(y);
 	gui_graph.drowgraph(y);
-//	y.removeNode(7);
-//	gui_graph.drowgraph(y);
+	y.removeNode(7);
+	gui_graph.drowgraph(y);
 
 	}
 	private static graph buildgraph() {

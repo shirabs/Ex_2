@@ -20,6 +20,7 @@ import utils.StdDraw;
 
 public class gui_graph {
 
+
 	public static void drowgraph(graph g) {
 		graph_algorithms ga=new Graph_Algo();
 		ga.init(g);
@@ -27,10 +28,10 @@ public class gui_graph {
 
 		//update the range
 		StdDraw.setCanvasSize();
-		StdDraw.setXscale(0,100);
-		StdDraw.setYscale(0,100);
+		setCanvas(g);
 
-		//		
+		//action on the button is connect that show the graph in green color if the graph connect
+		//else in the red color		
 		StdDraw.isConnectedButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,7 +41,7 @@ public class gui_graph {
 				System.out.println(ga.isConnected());
 			}
 		});
-
+		//action on the button shortestPath that show the short path in black color
 		StdDraw.spButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,4 +123,25 @@ public class gui_graph {
 			}
 		}
 	}
+
+	//update the range
+	private static void setCanvas(graph g) {	
+		double xmin=Double.MAX_VALUE;
+		double xmax=Double.MIN_VALUE;
+		double ymin=Double.MAX_VALUE;
+		double ymax=Double.MIN_VALUE;
+
+		Collection<node_data> v =g.getV();
+		Iterator<node_data> it=v.iterator();
+		while(it.hasNext()) {
+			node_data node=it.next();
+			if(node.getLocation().x()<xmin) xmin=node.getLocation().x();
+			if(node.getLocation().x()>xmax) xmax=node.getLocation().x();
+			if(node.getLocation().y()<ymin) ymin=node.getLocation().y();
+			if(node.getLocation().y()>xmax) ymax=node.getLocation().y();
+		}
+		StdDraw.setXscale(xmin-10,xmax+10);
+		StdDraw.setYscale(ymin-10,ymax+10);
+	}
+
 }
