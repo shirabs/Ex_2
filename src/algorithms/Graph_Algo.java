@@ -278,7 +278,7 @@ public class Graph_Algo implements graph_algorithms{
 				run.remove(0);
 				temp.addAll(run);
 				it=tar.iterator();
-				System.out.println(tar);
+//				System.out.println(tar);
 			}
 			else {
 				end=start;

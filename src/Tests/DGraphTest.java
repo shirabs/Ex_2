@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import algorithms.Graph_Algo;
+import algorithms.graph_algorithms;
 import dataStructure.DGraph;
 import dataStructure.EdgeData;
 import dataStructure.NodeData;
@@ -23,8 +25,10 @@ class DGraphTest {
 	@BeforeAll
 	static void setDgraph() {
 		y=buildgraph();
+		graph_algorithms a=new Graph_Algo(y);
+		System.out.println(a.isConnected());
 	}
-	private static graph buildgraph() {
+	public static graph buildgraph() {
 		NodeData x0=new NodeData(new Point3D(11, 1, 0));
 		NodeData x1=new NodeData(new Point3D(22, 10, 0));
 		NodeData x2=new NodeData(new Point3D(33, 24, 0));
@@ -33,7 +37,7 @@ class DGraphTest {
 		NodeData x5=new NodeData(new Point3D(66, 40, 0));
 		NodeData x6=new NodeData(new Point3D(77, 7, 0));
 		NodeData x7=new NodeData(new Point3D(88, 59, 0));
-		NodeData x8=new NodeData(new Point3D(10,9, 5));
+//		NodeData x8=new NodeData(new Point3D(10,9, 5));
 
 		graph y=new DGraph();
 		y.addNode(x0);
@@ -44,7 +48,7 @@ class DGraphTest {
 		y.addNode(x5);
 		y.addNode(x6);
 		y.addNode(x7);
-		y.addNode(x8);
+//		y.addNode(x8);
 
 		y.connect(1, 2, 2);
 		y.connect(1, 3, 5);
@@ -60,6 +64,7 @@ class DGraphTest {
 		y.connect(6, 3, 2);
 		y.connect(6, 5, 4);
 		y.connect(7, 6, 8);
+		y.connect(7, 8, 10);
 		return y;
 	}
 
@@ -155,7 +160,7 @@ class DGraphTest {
 
 	@Test
 	void testEdgeSize() {
-		assertEquals(14, y.edgeSize());;
+		assertEquals(15, y.edgeSize());;
 	}
 
 	@Test
