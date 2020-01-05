@@ -1,19 +1,16 @@
 package dataStructure;
 
-import java.awt.Color;
-
 import utils.Point3D;
 
 public class NodeData implements node_data {
 	private String type="NodeData";
-//	public static Color[]color= {Color.WHITE,Color.GRAY,Color.BLACK};
 	private Point3D location;
 	private int key;
 	private double weight;
 	private int tag;
 	private String info;
 	public static int id=1;
-	
+
 	public NodeData() {
 		this.location=Point3D.ORIGIN;
 		this.key=id;
@@ -30,7 +27,7 @@ public class NodeData implements node_data {
 		this.weight= Double.MAX_VALUE;
 		this.tag=0;
 		this.info="";
-		
+
 	}
 
 
@@ -79,7 +76,6 @@ public class NodeData implements node_data {
 		tag=t;
 
 	}
-	
 
 	public String toString() {
 		return "key ="+ this.key+ " tag ="+this.tag+ "location ="+this.location+ "wegith ="+this.weight;

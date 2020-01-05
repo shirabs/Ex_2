@@ -9,12 +9,15 @@ import gui.gui_graph;
 import utils.Point3D;
 
 
-class Graph_AlgoTest {
+class gui_graphTest {
 	public static void main(String[] args) {
 		
 	graph y=buildgraph();
 	graph_algorithms a= new Graph_Algo(y);
 	gui_graph.drowgraph(y);
+	y.removeNode(7);
+	gui_graph.drowgraph(y);
+
 	}
 	private static graph buildgraph() {
 
